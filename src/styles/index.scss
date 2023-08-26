@@ -1,0 +1,25 @@
+@use 'variables';
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  background-color: variables.$main-bg;
+}
+
+@media screen and (min-width: 767px) {
+  body {
+    background-color: red;
+  }
+}
