@@ -1,0 +1,20 @@
+@use 'variables';
+
+header {
+  padding: 8px;
+  background-color: variables.$light-bg;
+  color: variables.$dark-color;
+  text-align: center;
+  box-shadow: 1px 1px 5px variables.$dark-color;
+  margin-bottom: 16px;
+
+  .header {
+    max-width: 1042px;
+    width: 100%;
+    margin: 0 auto;
+
+    h1 {
+      font-size: 2rem;
+    }
+  }
+}
