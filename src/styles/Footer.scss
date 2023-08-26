@@ -1,0 +1,17 @@
+@use 'variables';
+
+footer {
+  padding: 8px;
+  text-align: center;
+  margin-top: 16px;
+
+  .footer {
+    max-width: 1042px;
+    width: 100%;
+    margin: 0 auto;
+
+    address {
+      font-size: 1rem;
+    }
+  }
+}

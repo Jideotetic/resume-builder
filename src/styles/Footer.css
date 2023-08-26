@@ -1,0 +1,13 @@
+footer {
+  padding: 8px;
+  text-align: center;
+  margin-top: 16px;
+}
+footer .footer {
+  max-width: 1042px;
+  width: 100%;
+  margin: 0 auto;
+}
+footer .footer address {
+  font-size: 1rem;
+}/*# sourceMappingURL=Footer.css.map */
