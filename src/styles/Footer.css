@@ -1,13 +1,21 @@
 footer {
-  padding: 8px;
+  padding: 16px;
   text-align: center;
   margin-top: 16px;
+  background-color: rgb(14, 55, 78);
+  color: #fff;
 }
 footer .footer {
-  max-width: 1042px;
+  max-width: 1440px;
   width: 100%;
   margin: 0 auto;
 }
 footer .footer address {
   font-size: 1rem;
+}
+footer .footer address a {
+  color: #fff;
+}
+footer .footer address a:hover {
+  text-decoration: none;
 }/*# sourceMappingURL=Footer.css.map */

@@ -1,0 +1,99 @@
+@use 'variables';
+
+.personal-details-wrapper {
+  background-color: variables.$light-bg;
+  padding: 24px 16px;
+  box-shadow: 1px 1px 2px variables.$dark-color;
+  margin-bottom: 16px;
+  border-radius: 5px;
+  border: none;
+
+  .personal-details-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .personal-details-title {
+    display: flex;
+    gap: 10px;
+  }
+
+  fieldset {
+    border: none;
+  }
+}
+
+.educations-wrapper {
+  background-color: variables.$light-bg;
+  padding: 24px 16px;
+  box-shadow: 1px 1px 2px variables.$dark-color;
+  margin-bottom: 16px;
+  border-radius: 5px;
+  border: none;
+
+  .educations-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .educations-title {
+    display: flex;
+    gap: 10px;
+  }
+}
+
+.experience-wrapper {
+  background-color: variables.$light-bg;
+  padding: 24px 16px;
+  box-shadow: 1px 1px 2px variables.$dark-color;
+  margin-bottom: 16px;
+  border-radius: 5px;
+  border: none;
+
+  .experience-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .experience-title {
+    display: flex;
+    gap: 10px;
+  }
+}
+
+.personal-details-icon,
+.educations-icon,
+.experience-icon,
+.reveal-icon {
+  width: 20px;
+  cursor: pointer;
+}
+
+fieldset {
+  background-color: variables.$light-bg;
+  border: none;
+
+  label {
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+
+  input,
+  textarea {
+    background-color: variables.$main-bg;
+    width: 100%;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+
+  input:focus {
+    outline-color: variables.$resume-header-bg;
+  }
+}
+
+h1 {
+  font-size: 2rem;
+}

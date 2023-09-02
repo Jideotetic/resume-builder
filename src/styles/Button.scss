@@ -1,19 +1,21 @@
 @use 'variables';
 
-.create-resume {
-  background-color: variables.$resume-header-bg;
+button {
+  width: max-content;
+  background-color: variables.$colored-bg;
   color: variables.$light-bg;
   padding: 16px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   border-radius: 10px;
   border: none;
   cursor: pointer;
   transition: all 0.5s ease;
   margin: 0 auto;
   display: block;
+  align-self: self-start;
 }
 
-.create-resume:hover {
+button:hover {
   background-color: variables.$hover-bg;
   transform: scale(1.1);
 }

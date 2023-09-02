@@ -10,14 +10,9 @@
   margin: 0;
   padding: 0;
   box-sizing: inherit;
+  transition: all 0.5s ease-in-out;
 }
 
 body {
   background-color: #f3f4f6;
-}
-
-@media screen and (min-width: 767px) {
-  body {
-    background-color: red;
-  }
 }/*# sourceMappingURL=index.css.map */

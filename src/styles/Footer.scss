@@ -1,17 +1,27 @@
 @use 'variables';
 
 footer {
-  padding: 8px;
+  padding: 16px;
   text-align: center;
   margin-top: 16px;
+  background-color: variables.$colored-bg;
+  color: variables.$light-color;
 
   .footer {
-    max-width: 1042px;
+    max-width: 1440px;
     width: 100%;
     margin: 0 auto;
 
     address {
       font-size: 1rem;
+
+      a {
+        color: variables.$light-color;
+      }
+
+      a:hover {
+        text-decoration: none;
+      }
     }
   }
 }

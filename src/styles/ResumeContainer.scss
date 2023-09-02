@@ -1,0 +1,28 @@
+@use 'variables';
+
+.cv-personal-details {
+  background-color: variables.$colored-bg;
+  height: min-content;
+  text-align: center;
+  color: variables.$light-bg;
+  padding: 8px;
+  margin-bottom: 0;
+
+  h3 {
+    font-size: 2rem;
+  }
+}
+
+.cv-container {
+  background-color: variables.$light-bg;
+  line-height: 1.5;
+
+  section {
+    margin-bottom: 8px;
+  }
+
+  h4,
+  hr {
+    margin-bottom: 8px;
+  }
+}

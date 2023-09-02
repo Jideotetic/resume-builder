@@ -1,17 +1,20 @@
-.create-resume {
+button {
+  width: -moz-max-content;
+  width: max-content;
   background-color: rgb(14, 55, 78);
   color: #fff;
   padding: 16px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   border-radius: 10px;
   border: none;
   cursor: pointer;
   transition: all 0.5s ease;
   margin: 0 auto;
   display: block;
+  align-self: self-start;
 }
 
-.create-resume:hover {
+button:hover {
   background-color: rgb(7, 26, 37);
   transform: scale(1.1);
-}/*# sourceMappingURL=CreateResumeButton.css.map */
+}/*# sourceMappingURL=Button.css.map */
