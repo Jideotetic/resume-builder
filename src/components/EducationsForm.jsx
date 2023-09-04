@@ -1,4 +1,4 @@
-export default function EducationsForm() {
+export default function EducationsForm({ value }) {
   return (
     <>
       <fieldset>
@@ -31,6 +31,9 @@ export default function EducationsForm() {
         <label htmlFor="location">Location</label> <small>(Optional)</small>
         <br />
         <input type="text" name="location" id="location" />
+        <br />
+        <br />
+        <button type="button" onClick={""}>Save</button>
       </fieldset>
     </>
   );

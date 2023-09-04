@@ -1,6 +1,6 @@
 @use 'variables';
 
-.personal-details-wrapper {
+.personal-details-form-wrapper {
   background-color: variables.$light-bg;
   padding: 24px 16px;
   box-shadow: 1px 1px 2px variables.$dark-color;
@@ -8,18 +8,14 @@
   border-radius: 5px;
   border: none;
 
-  .personal-details-header {
+  .personal-details-form-header {
     display: flex;
     justify-content: space-between;
   }
 
-  .personal-details-title {
+  .personal-details-form-title {
     display: flex;
     gap: 10px;
-  }
-
-  fieldset {
-    border: none;
   }
 }
 
@@ -61,7 +57,7 @@
   }
 }
 
-.personal-details-icon,
+.personal-details-form-icon,
 .educations-icon,
 .experience-icon,
 .reveal-icon {
@@ -76,6 +72,8 @@ fieldset {
   label {
     display: inline-block;
     margin-bottom: 5px;
+    font-size: 1rem;
+    font-weight: 600;
   }
 
   input,
@@ -90,10 +88,6 @@ fieldset {
   }
 
   input:focus {
-    outline-color: variables.$resume-header-bg;
+    outline-color: variables.$colored-bg;
   }
-}
-
-h1 {
-  font-size: 2rem;
 }

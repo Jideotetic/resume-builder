@@ -1,28 +1,29 @@
 import '../styles/ResumeContainer.css';
 
-export default function ResumeContainer() {
+export default function ResumeContainer({ value }) {
   return (
     <>
-      <div className="cv-container">
-        <div className="cv-personal-details">
-          <h3></h3>
+      <div className="resume-container">
+        <div className="resume-personal-details">
+          <h3>{value.name.toUpperCase()}</h3>
+          <span>
+            {`${value.email.toUpperCase()} | ${value.phoneNumber} | ${
+              value.homeAddress
+            }`}
+          </span>
         </div>
 
-        <div className="cv-career-summary">
+        <div className="resume-career-summary">
           <h4>CAREER SUMMARY</h4>
           <hr />
-          <p></p>
+          <p>{value.careerSummary}</p>
         </div>
-        <div className="cv-experience">
+        <div className="resume-experience">
           <h4>EXPERIENCE</h4>
           <hr />
         </div>
-        <div className="cv-educations">
+        <div className="resume-educations">
           <h4>EDUCATIONS</h4>
-          <hr />
-        </div>
-        <div className="cv-skills">
-          <h4>SKILLS</h4>
           <hr />
         </div>
       </div>
