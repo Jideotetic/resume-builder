@@ -1,24 +1,26 @@
-.cv-personal-details {
+.resume-container {
+  background-color: #fff;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+.resume-container .resume-personal-details {
   background-color: rgb(14, 55, 78);
   height: -moz-min-content;
   height: min-content;
   text-align: center;
   color: #fff;
-  padding: 8px;
   margin-bottom: 0;
 }
-.cv-personal-details h3 {
+.resume-container .resume-personal-details h3 {
   font-size: 2rem;
 }
-
-.cv-container {
-  background-color: #fff;
-  line-height: 1.5;
+.resume-container .resume-career-summary,
+.resume-container .resume-personal-details,
+.resume-container .resume-experience,
+.resume-container .resume-educations {
+  padding: 8px;
 }
-.cv-container section {
-  margin-bottom: 8px;
-}
-.cv-container h4,
-.cv-container hr {
+.resume-container h4,
+.resume-container hr {
   margin-bottom: 8px;
 }/*# sourceMappingURL=ResumeContainer.css.map */

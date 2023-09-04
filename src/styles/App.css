@@ -7,5 +7,13 @@
 
 .button-container {
   display: flex;
-  gap: 10px;
+  justify-content: space-around;
+}
+
+@media screen and (min-width: 768px) {
+  .button-container {
+    flex-direction: column;
+    justify-content: unset;
+    gap: 10px;
+  }
 }/*# sourceMappingURL=App.css.map */

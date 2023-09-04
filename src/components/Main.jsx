@@ -17,3 +17,4 @@ export default function Main({ children, status, width, breakPoint }) {
     </main>
   );
 }
+
