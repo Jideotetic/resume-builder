@@ -2,8 +2,9 @@ import Button from './Button';
 
 export default function PersonalDetails({
   value,
-  editPersonalDetails,
-  setEditPersonalDetails,
+  edit,
+  setEdit,
+  revealPersonalDetails,
 }) {
   return (
     <>
@@ -21,8 +22,9 @@ export default function PersonalDetails({
         </div>
         <Button
           name="Edit"
-          editPersonalDetails={editPersonalDetails}
-          setEditPersonalDetails={setEditPersonalDetails}
+          edit={edit}
+          setEdit={setEdit}
+          revealPersonalDetails={revealPersonalDetails}
         />
       </div>
     </>

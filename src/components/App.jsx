@@ -18,15 +18,32 @@ function App() {
   const [revealPersonalDetails, setRevealPersonalDetails] = useState(false);
   const [revealEducations, setRevealEducations] = useState(false);
   const [revealExperience, setRevealExperience] = useState(false);
-  const [editPersonalDetails, setEditPersonalDetails] = useState(false);
+  const [edit, setEdit] = useState(false);
+  const [addEducation, setAddEducation] = useState(false);
+  const [editEducation, setEditEducation] = useState(false);
   const [value, setValue] = useState({
     name: 'Abdulbasit Yusuf',
     email: 'jideotetic@gmail.com',
     phoneNumber: '09014349835',
     homeAddress: 'Lagos, Nigeria',
     careerSummary: `I’m a highly motivated Front-end developer highly invested in building responsive user interfaces and accessible websites. With strong background in semantic HTML, CSS, and JavaScript, I get my motivations from being able to develop websites with big part of accessibility in mind, when I use accessibility tools on websites I built and it works correctly, I feel fulfilled and motivated to do more. I have 1 year of experience in training and have built a lot of projects HTML5, CSS3, JavaScript, Git & GitHub with incredible ease of adaptation and learning new technologies as need be.`,
-    education: {},
+    education: {
+      school: '',
+      degree: '',
+      startDate: '',
+      endDate: '',
+      location: '',
+    },
     experience: {},
+    educations: [
+      {
+        school: 'Usmanu DanFodiyo University',
+        degree: 'Bachelor',
+        startDate: '2013',
+        endDate: '2017',
+        location: 'Sokoto',
+      },
+    ],
   });
 
   /**
@@ -57,6 +74,17 @@ function App() {
     return () => window.removeEventListener('resize', handleWindowResize);
   }, [revealPersonalDetails, width, revealEducations, revealExperience]);
 
+  console.log(
+    edit,
+    addEducation,
+    editEducation,
+    value.education.school,
+    value.education.degree,
+    value.education.startDate,
+    value.education.endDate,
+    value.education.location
+  );
+
   return (
     <>
       <Favicon />
@@ -79,8 +107,12 @@ function App() {
                 setRevealEducations={setRevealEducations}
                 revealExperience={revealExperience}
                 setRevealExperience={setRevealExperience}
-                editPersonalDetails={editPersonalDetails}
-                setEditPersonalDetails={setEditPersonalDetails}
+                edit={edit}
+                setEdit={setEdit}
+                addEducation={addEducation}
+                setAddEducation={setAddEducation}
+                editEducation={editEducation}
+                setEditEducation={setEditEducation}
               />
               <ResumeContainer value={value} />
             </>
@@ -96,8 +128,12 @@ function App() {
                 setRevealEducations={setRevealEducations}
                 revealExperience={revealExperience}
                 setRevealExperience={setRevealExperience}
-                editPersonalDetails={editPersonalDetails}
-                setEditPersonalDetails={setEditPersonalDetails}
+                edit={edit}
+                setEdit={setEdit}
+                addEducation={addEducation}
+                setAddEducation={setAddEducation}
+                editEducation={editEducation}
+                setEditEducation={setEditEducation}
               />
               <div className="button-container">
                 <Button status={status} setStatus={setStatus} name="Go Back" />
@@ -126,8 +162,12 @@ function App() {
                 setRevealEducations={setRevealEducations}
                 revealExperience={revealExperience}
                 setRevealExperience={setRevealExperience}
-                editPersonalDetails={editPersonalDetails}
-                setEditPersonalDetails={setEditPersonalDetails}
+                edit={edit}
+                setEdit={setEdit}
+                addEducation={addEducation}
+                setAddEducation={setAddEducation}
+                editEducation={editEducation}
+                setEditEducation={setEditEducation}
               />
               <ResumeContainer value={value} />
             </>
