@@ -3,10 +3,12 @@ import Button from './Button';
 export default function PersonalDetailsForm({
   value,
   setValue,
-  editPersonalDetails,
-  setEditPersonalDetails,
+  save,
+  setSave,
+  edit,
+  setEdit,
+  revealPersonalDetails,
 }) {
-  // console.log(value);
   function handleNameChange(e) {
     setValue({
       ...value,
@@ -95,10 +97,12 @@ export default function PersonalDetailsForm({
           value={value.careerSummary}
           onChange={handleCareerSummaryChange}></textarea>
         <br />
+        <br />
         <Button
           name="Save"
-          editPersonalDetails={editPersonalDetails}
-          setEditPersonalDetails={setEditPersonalDetails}
+          edit={edit}
+          setEdit={setEdit}
+          revealPersonalDetails={revealPersonalDetails}
         />
       </fieldset>
     </>
