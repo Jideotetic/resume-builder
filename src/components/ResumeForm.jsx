@@ -116,6 +116,7 @@ export default function ResumeForm({
                 <React.Fragment key={i}>
                   <EditEducation
                     value={value}
+                    id={i}
                     setValue={setValue}
                     addEducation={addEducation}
                     setAddEducation={setAddEducation}
