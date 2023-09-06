@@ -8,7 +8,7 @@ import ResumeForm from './ResumeForm';
 import ResumeContainer from './ResumeContainer';
 import '../styles/App.css';
 
-function App() {
+export default function App() {
   /**
    * status variable to track the state of the application
    * width variable to handle responsiveness
@@ -18,7 +18,7 @@ function App() {
   const [revealPersonalDetails, setRevealPersonalDetails] = useState(false);
   const [revealEducations, setRevealEducations] = useState(false);
   const [revealExperience, setRevealExperience] = useState(false);
-  const [edit, setEdit] = useState(false);
+  const [editPersonalDetails, setEditPersonalDetails] = useState(false);
   const [addEducation, setAddEducation] = useState(false);
   const [editEducation, setEditEducation] = useState(false);
   const [value, setValue] = useState({
@@ -75,7 +75,7 @@ function App() {
   }, [revealPersonalDetails, width, revealEducations, revealExperience]);
 
   console.log(
-    edit,
+    editPersonalDetails,
     addEducation,
     editEducation,
     value.education.school,
@@ -107,8 +107,8 @@ function App() {
                 setRevealEducations={setRevealEducations}
                 revealExperience={revealExperience}
                 setRevealExperience={setRevealExperience}
-                edit={edit}
-                setEdit={setEdit}
+                editPersonalDetails={editPersonalDetails}
+                setEditPersonalDetails={setEditPersonalDetails}
                 addEducation={addEducation}
                 setAddEducation={setAddEducation}
                 editEducation={editEducation}
@@ -128,8 +128,8 @@ function App() {
                 setRevealEducations={setRevealEducations}
                 revealExperience={revealExperience}
                 setRevealExperience={setRevealExperience}
-                edit={edit}
-                setEdit={setEdit}
+                editPersonalDetails={editPersonalDetails}
+                setEditPersonalDetails={setEditPersonalDetails}
                 addEducation={addEducation}
                 setAddEducation={setAddEducation}
                 editEducation={editEducation}
@@ -162,8 +162,8 @@ function App() {
                 setRevealEducations={setRevealEducations}
                 revealExperience={revealExperience}
                 setRevealExperience={setRevealExperience}
-                edit={edit}
-                setEdit={setEdit}
+                editPersonalDetails={editPersonalDetails}
+                setEditPersonalDetails={setEditPersonalDetails}
                 addEducation={addEducation}
                 setAddEducation={setAddEducation}
                 editEducation={editEducation}
@@ -188,5 +188,3 @@ function App() {
     </>
   );
 }
-
-export default App;

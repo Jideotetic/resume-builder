@@ -3,11 +3,8 @@ import Button from './Button';
 export default function PersonalDetailsForm({
   value,
   setValue,
-  save,
-  setSave,
-  edit,
-  setEdit,
-  revealPersonalDetails,
+  editPersonalDetails,
+  setEditPersonalDetails,
 }) {
   function handleNameChange(e) {
     setValue({
@@ -100,9 +97,8 @@ export default function PersonalDetailsForm({
         <br />
         <Button
           name="Save"
-          edit={edit}
-          setEdit={setEdit}
-          revealPersonalDetails={revealPersonalDetails}
+          editPersonalDetails={editPersonalDetails}
+          setEditPersonalDetails={setEditPersonalDetails}
         />
       </fieldset>
     </>

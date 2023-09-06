@@ -1,43 +1,7 @@
 @use 'variables';
 
-.personal-details-form-wrapper {
-  background-color: variables.$light-bg;
-  padding: 24px 16px;
-  box-shadow: 1px 1px 2px variables.$dark-color;
-  margin-bottom: 16px;
-  border-radius: 5px;
-  border: none;
-
-  .personal-details-form-header {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .personal-details-form-title {
-    display: flex;
-    gap: 10px;
-  }
-}
-
-.educations-wrapper {
-  background-color: variables.$light-bg;
-  padding: 24px 16px;
-  box-shadow: 1px 1px 2px variables.$dark-color;
-  margin-bottom: 16px;
-  border-radius: 5px;
-  border: none;
-
-  .educations-header {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .educations-title {
-    display: flex;
-    gap: 10px;
-  }
-}
-
+.personal-details-wrapper,
+.educations-wrapper,
 .experience-wrapper {
   background-color: variables.$light-bg;
   padding: 24px 16px;
@@ -46,22 +10,32 @@
   border-radius: 5px;
   border: none;
 
+  .personal-details-header,
+  .educations-header,
   .experience-header {
     display: flex;
     justify-content: space-between;
   }
 
+  .personal-details-title,
+  .educations-title,
   .experience-title {
     display: flex;
     gap: 10px;
   }
 }
 
-.personal-details-form-icon,
+.personal-details-icon,
 .educations-icon,
 .experience-icon,
+.hide-details,
+.show-details,
 .reveal-icon {
   width: 20px;
+}
+
+.hide-details,
+.show-details {
   cursor: pointer;
 }
 
