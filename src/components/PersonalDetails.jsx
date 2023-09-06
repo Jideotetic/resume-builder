@@ -1,20 +1,15 @@
 import Button from './Button';
+import '../styles/PersonalDetails.css';
 
 export default function PersonalDetails({
   value,
-  edit,
-  setEdit,
-  revealPersonalDetails,
+  editPersonalDetails,
+  setEditPersonalDetails,
 }) {
   return (
     <>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}>
-        <div>
+      <div className="personal-details">
+        <div className="personal-details-content">
           <p>{value.name.toUpperCase()}</p>
           <p>{value.email.toUpperCase()}</p>
           <p>{value.phoneNumber}</p>
@@ -22,9 +17,8 @@ export default function PersonalDetails({
         </div>
         <Button
           name="Edit"
-          edit={edit}
-          setEdit={setEdit}
-          revealPersonalDetails={revealPersonalDetails}
+          editPersonalDetails={editPersonalDetails}
+          setEditPersonalDetails={setEditPersonalDetails}
         />
       </div>
     </>

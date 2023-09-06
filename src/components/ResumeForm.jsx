@@ -21,8 +21,8 @@ export default function ResumeForm({
   setRevealEducations,
   revealExperience,
   setRevealExperience,
-  edit,
-  setEdit,
+  editPersonalDetails,
+  setEditPersonalDetails,
   save,
   setSave,
   addEducation,
@@ -30,23 +30,25 @@ export default function ResumeForm({
   editEducation,
   setEditEducation,
 }) {
-  function handleRevealEducations() {
-    setRevealEducations(!revealEducations);
-  }
-  function handleRevealExperience() {
-    setRevealExperience(!revealExperience);
-  }
   function handleRevealPersonalDetails() {
     setRevealPersonalDetails(!revealPersonalDetails);
   }
 
+  function handleRevealEducations() {
+    setRevealEducations(!revealEducations);
+  }
+
+  function handleRevealExperience() {
+    setRevealExperience(!revealExperience);
+  }
+
   return (
     <div className="resume-form-wrapper">
-      <div className="personal-details-form-wrapper">
-        <div className="personal-details-form-header">
-          <div className="personal-details-form-title">
+      <div className="personal-details-wrapper">
+        <div className="personal-details-header">
+          <div className="personal-details-title">
             <img
-              className="personal-details-form-icon"
+              className="personal-details-icon"
               src={personalDetailsIcon}
               alt="Icon"
             />
@@ -54,14 +56,14 @@ export default function ResumeForm({
           </div>
           {revealPersonalDetails ? (
             <img
-              className="reveal-icon"
+              className="hide-details"
               src={angleUp}
               alt="icon"
               onClick={handleRevealPersonalDetails}
             />
           ) : (
             <img
-              className="reveal-icon"
+              className="show-details"
               src={angleDown}
               alt="icon"
               onClick={handleRevealPersonalDetails}
@@ -70,20 +72,18 @@ export default function ResumeForm({
         </div>
 
         {revealPersonalDetails ? (
-          edit ? (
+          editPersonalDetails ? (
             <PersonalDetailsForm
               value={value}
               setValue={setValue}
-              edit={edit}
-              setEdit={setEdit}
-              revealPersonalDetails={revealPersonalDetails}
+              editPersonalDetails={editPersonalDetails}
+              setEditPersonalDetails={setEditPersonalDetails}
             />
           ) : (
             <PersonalDetails
               value={value}
-              edit={edit}
-              setEdit={setEdit}
-              revealPersonalDetails={revealPersonalDetails}
+              editPersonalDetails={editPersonalDetails}
+              setEditPersonalDetails={setEditPersonalDetails}
             />
           )
         ) : null}
