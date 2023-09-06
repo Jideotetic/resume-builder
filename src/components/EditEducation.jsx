@@ -9,6 +9,57 @@ export default function EditEducation({
   addEducation,
   setAddEducation,
 }) {
+  function handleSchoolChange(e) {
+    setValue({
+      ...value,
+      education: {
+        ...value.education,
+        school: e.target.value,
+      },
+    });
+  }
+
+  function handleDegreeChange(e) {
+    setValue({
+      ...value,
+      education: {
+        ...value.education,
+        degree: e.target.value,
+      },
+    });
+  }
+
+  function handleStartDateChange(e) {
+    setValue({
+      ...value,
+      education: {
+        ...value.education,
+        startDate: e.target.value,
+      },
+    });
+  }
+
+  function handleEndDateChange(e) {
+    setValue({
+      ...value,
+      education: {
+        ...value.education,
+        endDate: e.target.value,
+      },
+    });
+  }
+
+  function handleLocationChange(e) {
+    setValue({
+      ...value,
+      education: {
+        ...value.education,
+        location: e.target.value,
+      },
+    });
+  }
+
+  console.log(value);
   return (
     <>
       <fieldset>
@@ -19,6 +70,8 @@ export default function EditEducation({
           name="school"
           id="school"
           placeholder="Enter School / University"
+          value={value.educations.school}
+          onChange={handleSchoolChange}
         />
         <br />
         <label htmlFor="degree">Degree</label>
@@ -28,19 +81,39 @@ export default function EditEducation({
           name="degree"
           id="degree"
           placeholder="Enter Degree / Field of Study"
+          value={value.educations.degree}
+          onChange={handleDegreeChange}
         />
         <br />
         <label htmlFor="start-date">Start Date</label>
         <br />
-        <input type="month" name="start-date" id="start-date" />
+        <input
+          type="month"
+          name="start-date"
+          id="start-date"
+          value={value.educations.startDate}
+          onChange={handleStartDateChange}
+        />
         <br />
         <label htmlFor="end-date">End Date</label>
         <br />
-        <input type="month" name="end-date" id="end-date" />
+        <input
+          type="month"
+          name="end-date"
+          id="end-date"
+          value={value.educations.endDate}
+          onChange={handleEndDateChange}
+        />
         <br />
         <label htmlFor="location">Location</label> <small>(Optional)</small>
         <br />
-        <input type="text" name="location" id="location" />
+        <input
+          type="text"
+          name="location"
+          id="location"
+          value={value.educations.location}
+          onChange={handleLocationChange}
+        />
         <br />
         <br />
         <div className="button-container">

@@ -20,7 +20,7 @@ export default function App() {
   const [revealExperience, setRevealExperience] = useState(false);
   const [editPersonalDetails, setEditPersonalDetails] = useState(false);
   const [addEducation, setAddEducation] = useState(false);
-  const [editEducation, setEditEducation] = useState(false);
+  const [editEducation, setEditEducation] = useState(true);
   const [value, setValue] = useState({
     name: 'Abdulbasit Yusuf',
     email: 'jideotetic@gmail.com',
@@ -39,8 +39,8 @@ export default function App() {
       {
         school: 'Usmanu DanFodiyo University',
         degree: 'Bachelor',
-        startDate: '2013',
-        endDate: '2017',
+        startDate: '2013-02',
+        endDate: '2017-11',
         location: 'Sokoto',
       },
     ],
@@ -74,16 +74,16 @@ export default function App() {
     return () => window.removeEventListener('resize', handleWindowResize);
   }, [revealPersonalDetails, width, revealEducations, revealExperience]);
 
-  console.log(
-    editPersonalDetails,
-    addEducation,
-    editEducation,
-    value.education.school,
-    value.education.degree,
-    value.education.startDate,
-    value.education.endDate,
-    value.education.location
-  );
+  // console.log(
+  //   editPersonalDetails,
+  //   addEducation,
+  //   editEducation,
+  //   value.education.school,
+  //   value.education.degree,
+  //   value.education.startDate,
+  //   value.education.endDate,
+  //   value.education.location
+  // );
 
   return (
     <>

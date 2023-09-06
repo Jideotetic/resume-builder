@@ -20,4 +20,8 @@ button:hover {
 .create-resume-button,
 .add-education-button {
   margin: 0 auto;
+}
+
+.add-education-button {
+  margin-top: 32px;
 }/*# sourceMappingURL=Button.css.map */

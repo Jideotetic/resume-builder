@@ -1,5 +1,11 @@
 @use 'variables';
 
-li {
+.educations-list {
   list-style-type: none;
+}
+
+.education-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

@@ -28,7 +28,30 @@ export default function Button({
       setEditPersonalDetails(!editPersonalDetails);
     } else if (editPersonalDetails && name === 'Save') {
       setEditPersonalDetails(!editPersonalDetails);
+    } else if (!addEducation && name === 'Add Education') {
+      setAddEducation(!addEducation);
+    } else if (addEducation && name === 'Save') {
+      setAddEducation(!addEducation);
+      value.educations.push(value.education);
+      setValue({
+        ...value,
+        education: {
+          ...value.education,
+          school: '',
+          degree: '',
+          startDate: '',
+          endDate: '',
+          location: '',
+        },
+      });
+    } else if (addEducation && name === 'Cancel') {
+      setAddEducation(!addEducation);
+    } else if (editEducation && name === 'Edit' && revealEducations) {
+      setEditEducation(!editEducation);
+    } else if (!editEducation && name === 'Save' && revealEducations) {
+      setEditEducation(!editEducation);
     }
+
     //   else if (!edit && name === 'Edit' && revealPersonalDetails) {
     //     setEdit(!edit);
     //   } else if (edit && name === 'Save' && revealPersonalDetails) {

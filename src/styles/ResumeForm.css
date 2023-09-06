@@ -38,12 +38,16 @@
 .experience-icon,
 .hide-details,
 .show-details,
+.show-educations,
+.hide-educations,
 .reveal-icon {
   width: 20px;
 }
 
 .hide-details,
-.show-details {
+.show-details,
+.show-educations,
+.hide-educations {
   cursor: pointer;
 }
 
