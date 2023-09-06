@@ -11,6 +11,7 @@ import angleDown from '../assets/angle-down-solid.svg';
 import educationsIcon from '../assets/user-graduate-solid.svg';
 import experienceIcon from '../assets/briefcase-solid.svg';
 import '../styles/ResumeForm.css';
+import React from 'react';
 
 export default function ResumeForm({
   value,
@@ -23,8 +24,6 @@ export default function ResumeForm({
   setRevealExperience,
   editPersonalDetails,
   setEditPersonalDetails,
-  save,
-  setSave,
   addEducation,
   setAddEducation,
   editEducation,
@@ -96,14 +95,14 @@ export default function ResumeForm({
           </div>
           {revealEducations ? (
             <img
-              className="reveal-icon"
+              className="hide-educations"
               src={angleUp}
               alt="icon"
               onClick={handleRevealEducations}
             />
           ) : (
             <img
-              className="reveal-icon"
+              className="show-educations"
               src={angleDown}
               alt="icon"
               onClick={handleRevealEducations}
@@ -112,12 +111,56 @@ export default function ResumeForm({
         </div>
         {revealEducations ? (
           editEducation ? (
+            value.educations.map((education, i) => {
+              return (
+                <React.Fragment key={i}>
+                  <EditEducation
+                    value={value}
+                    setValue={setValue}
+                    addEducation={addEducation}
+                    setAddEducation={setAddEducation}
+                  />
+                </React.Fragment>
+              );
+            })
+          ) : addEducation ? (
+            <EducationsForm
+              value={value}
+              setValue={setValue}
+              addEducation={addEducation}
+              setAddEducation={setAddEducation}
+            />
+          ) : (
+            <>
+              {value.educations.map((education, i) => {
+                return (
+                  <React.Fragment key={i}>
+                    <Educations education={education} />
+                  </React.Fragment>
+                );
+              })}
+              {/* <Educations
+                value={value}
+                setValue={setValue}
+                addEducation={addEducation}
+                setAddEducation={setAddEducation}
+                editEducation={editEducation}
+                setEditEducation={setEditEducation}
+              /> */}
+              <Button
+                name="Add Education"
+                addEducation={addEducation}
+                setAddEducation={setAddEducation}
+              />
+            </>
+          )
+        ) : null}
+        {/* {revealEducations ? (
+          editEducation ? (
             <EditEducation />
           ) : value.educations.length === 0 && !addEducation ? (
             <Button
               name="Add Education"
-              edit={edit}
-              setEdit={setEdit}
               revealEducations={revealEducations}
               addEducation={addEducation}
               setAddEducation={setAddEducation}
@@ -126,8 +169,6 @@ export default function ResumeForm({
             <Educations
               value={value}
               setValue={setValue}
-              edit={edit}
-              setEdit={setEdit}
               revealEducations={revealEducations}
               addEducation={addEducation}
               setAddEducation={setAddEducation}
@@ -138,14 +179,12 @@ export default function ResumeForm({
             <EducationsForm
               value={value}
               setValue={setValue}
-              edit={edit}
-              setEdit={setEdit}
               revealEducations={revealEducations}
               addEducation={addEducation}
               setAddEducation={setAddEducation}
             />
           ) : null
-        ) : null}
+        ) : null} */}
       </div>
       <div className="experience-wrapper">
         <div className="experience-header">

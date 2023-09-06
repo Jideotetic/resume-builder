@@ -3,9 +3,6 @@ import Button from './Button';
 export default function EducationsForm({
   value,
   setValue,
-  edit,
-  setEdit,
-  revealEducations,
   addEducation,
   setAddEducation,
 }) {
@@ -58,6 +55,8 @@ export default function EducationsForm({
       },
     });
   }
+
+  
 
   return (
     <>
@@ -120,18 +119,10 @@ export default function EducationsForm({
             name="Save"
             value={value}
             setValue={setValue}
-            edit={edit}
-            setEdit={setEdit}
-            revealEducations={revealEducations}
             addEducation={addEducation}
             setAddEducation={setAddEducation}
           />
           <Button
-            value={value}
-            setValue={setValue}
-            edit={edit}
-            setEdit={setEdit}
-            revealEducations={revealEducations}
             addEducation={addEducation}
             setAddEducation={setAddEducation}
             name="Cancel"
