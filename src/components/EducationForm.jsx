@@ -1,6 +1,6 @@
 import Button from './Button';
 
-export default function EducationsForm({
+export default function EducationForm({
   value,
   setValue,
   addEducation,
@@ -23,14 +23,14 @@ export default function EducationsForm({
   function handleStartDateChange(e) {
     setValue({
       ...value,
-      startDate: e.target.value,
+      schoolStartDate: e.target.value,
     });
   }
 
   function handleEndDateChange(e) {
     setValue({
       ...value,
-      endDate: e.target.value,
+      schoolEndDate: e.target.value,
     });
   }
 
@@ -42,7 +42,11 @@ export default function EducationsForm({
   }
 
   const isActive =
-    !value.school || !value.degree || !value.startDate || !value.endDate;
+    !value.school ||
+    !value.degree ||
+    !value.schoolStartDate ||
+    !value.schoolEndDate ||
+    !value.schoolLocation;
 
   return (
     <>
@@ -75,7 +79,7 @@ export default function EducationsForm({
           type="month"
           name="start-date"
           id="start-date"
-          value={value.startDate}
+          value={value.schoolStartDate}
           onChange={handleStartDateChange}
         />
         <br />
@@ -85,16 +89,17 @@ export default function EducationsForm({
           type="month"
           name="end-date"
           id="end-date"
-          value={value.endDate}
+          value={value.schoolEndDate}
           onChange={handleEndDateChange}
         />
         <br />
-        <label htmlFor="location">Location</label> <small>(Optional)</small>
+        <label htmlFor="location">Location</label>
         <br />
         <input
           type="text"
           name="location"
           id="location"
+          placeholder="Enter Your School Location"
           value={value.schoolLocation}
           onChange={handleLocationChange}
         />

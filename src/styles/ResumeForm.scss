@@ -27,18 +27,21 @@
   .personal-details-icon,
   .educations-icon,
   .experience-icon,
-  .hide-details,
-  .show-details,
+  .hide-personal-details,
+  .show-personal-details,
   .show-educations,
   .hide-educations,
-  .reveal-icon {
+  .hide-experiences,
+  .show-experiences {
     width: 20px;
   }
 
-  .hide-details,
-  .show-details,
+  .hide-personal-details,
+  .show-personal-details,
   .show-educations,
-  .hide-educations {
+  .hide-educations,
+  .hide-experiences,
+  .show-experiences {
     cursor: pointer;
   }
 }

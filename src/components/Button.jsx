@@ -2,23 +2,31 @@ import '../styles/Button.css';
 
 export default function Button({
   name,
-  value,
   status,
-  isActive,
-  setValue,
   setStatus,
+  value,
+  setValue,
+  isActive,
+  editPersonalDetails,
+  setEditPersonalDetails,
   addEducation,
   setAddEducation,
-  editPersonalDetails,
   editEducation,
   setEditEducation,
-  setEditPersonalDetails,
   showPersonalDetails,
   showEducations,
+  showExperience,
+  editExperience,
   setSelectedEducationId,
   selectedEducationId,
   id,
   education,
+  experience,
+  addExperience,
+  setAddExperience,
+  setEditExperience,
+  setSelectedExperienceId,
+  selectedExperienceId,
 }) {
   function handleButtonClick() {
     if (status === '' && name === 'Create Resume') {
@@ -74,15 +82,15 @@ export default function Button({
             id: value.educations.length,
             school: value.school,
             degree: value.degree,
-            startDate: value.startDate,
-            endDate: value.endDate,
+            schoolStartDate: value.schoolStartDate,
+            schoolEndDate: value.schoolEndDate,
             schoolLocation: value.schoolLocation,
           },
         ],
         school: '',
         degree: '',
-        startDate: '',
-        endDate: '',
+        schoolStartDate: '',
+        schoolEndDate: '',
         schoolLocation: '',
       });
       setAddEducation(!addEducation);
@@ -91,8 +99,8 @@ export default function Button({
         ...value,
         school: '',
         degree: '',
-        startDate: '',
-        endDate: '',
+        schoolStartDate: '',
+        schoolEndDate: '',
         schoolLocation: '',
       });
       setAddEducation(!addEducation);
@@ -101,8 +109,8 @@ export default function Button({
         ...value,
         school: '',
         degree: '',
-        startDate: '',
-        endDate: '',
+        schoolStartDate: '',
+        schoolEndDate: '',
         schoolLocation: '',
       });
     } else if (showEducations && !editEducation && name === 'Edit') {
@@ -111,8 +119,8 @@ export default function Button({
         ...value,
         school: value.educations[selectedEducationId].school,
         degree: value.educations[selectedEducationId].degree,
-        startDate: value.educations[selectedEducationId].startDate,
-        endDate: value.educations[selectedEducationId].endDate,
+        schoolStartDate: value.educations[selectedEducationId].schoolStartDate,
+        schoolEndDate: value.educations[selectedEducationId].schoolEndDate,
         schoolLocation: value.educations[selectedEducationId].schoolLocation,
       });
       setEditEducation(!editEducation);
@@ -125,15 +133,15 @@ export default function Button({
             id: selectedEducationId,
             school: value.school,
             degree: value.degree,
-            startDate: value.startDate,
-            endDate: value.endDate,
+            schoolStartDate: value.schoolStartDate,
+            schoolEndDate: value.schoolEndDate,
             schoolLocation: value.schoolLocation,
           },
         ],
         school: '',
         degree: '',
-        startDate: '',
-        endDate: '',
+        schoolStartDate: '',
+        schoolEndDate: '',
         schoolLocation: '',
       });
       setEditEducation(!editEducation);
@@ -142,8 +150,8 @@ export default function Button({
         ...value,
         school: '',
         degree: '',
-        startDate: '',
-        endDate: '',
+        schoolStartDate: '',
+        schoolEndDate: '',
         schoolLocation: '',
       });
       setEditEducation(!editEducation);
@@ -152,16 +160,126 @@ export default function Button({
         ...value,
         school: '',
         degree: '',
-        startDate: '',
-        endDate: '',
+        schoolStartDate: '',
+        schoolEndDate: '',
         schoolLocation: '',
       });
-    } else if (!editEducation && name === 'Delete') {
+    } else if (!editEducation && showEducations && name === 'Delete') {
       setSelectedEducationId(id);
       setValue({
         ...value,
         educations: value.educations.filter((e) => {
           e.id !== education.selectedEducationId;
+        }),
+      });
+    } else if (!addExperience && name === 'Add Experience') {
+      setAddExperience(!addExperience);
+    } else if (addExperience && name === 'Save') {
+      setValue({
+        ...value,
+        experience: [
+          ...value.experience,
+          {
+            id: value.experience.length,
+            company: value.company,
+            position: value.position,
+            companyStartDate: value.companyStartDate,
+            companyEndDate: value.companyEndDate,
+            companyLocation: value.companyLocation,
+            jobDescription: value.jobDescription,
+          },
+        ],
+        company: '',
+        position: '',
+        companyStartDate: '',
+        companyEndDate: '',
+        companyLocation: '',
+        jobDescription: '',
+      });
+      setAddExperience(!addExperience);
+    } else if (addExperience && name === 'Cancel') {
+      setValue({
+        ...value,
+        company: '',
+        position: '',
+        companyStartDate: '',
+        companyEndDate: '',
+        companyLocation: '',
+        jobDescription: '',
+      });
+      setAddExperience(!addExperience);
+    } else if (addExperience && name === 'Clear') {
+      setValue({
+        ...value,
+        company: '',
+        position: '',
+        companyStartDate: '',
+        companyEndDate: '',
+        companyLocation: '',
+        jobDescription: '',
+      });
+    } else if (showExperience && !editExperience && name === 'Edit') {
+      setSelectedExperienceId(id);
+      setValue({
+        ...value,
+        company: value.experience[selectedExperienceId].company,
+        position: value.experience[selectedExperienceId].position,
+        companyStartDate:
+          value.experience[selectedExperienceId].companyStartDate,
+        companyEndDate: value.experience[selectedExperienceId].companyEndDate,
+        companyLocation: value.experience[selectedExperienceId].companyLocation,
+      });
+      setEditExperience(!editExperience);
+    } else if (editExperience && name === 'Save') {
+      setValue({
+        ...value,
+        experience: [
+          {
+            ...value.experience[selectedExperienceId],
+            id: selectedExperienceId,
+            company: value.company,
+            position: value.position,
+            companyStartDate: value.companyStartDate,
+            companyEndDate: value.companyEndDate,
+            companyLocation: value.companyLocation,
+            jobDescription: value.jobDescription,
+          },
+        ],
+        company: '',
+        position: '',
+        companyStartDate: '',
+        companyEndDate: '',
+        companyLocation: '',
+        jobDescription: '',
+      });
+      setEditExperience(!editExperience);
+    } else if (editExperience && name === 'Cancel') {
+      setValue({
+        ...value,
+        company: '',
+        position: '',
+        companyStartDate: '',
+        companyEndDate: '',
+        companyLocation: '',
+        jobDescription: '',
+      });
+      setEditExperience(!editExperience);
+    } else if (editExperience && name === 'Clear') {
+      setValue({
+        ...value,
+        company: '',
+        position: '',
+        companyStartDate: '',
+        companyEndDate: '',
+        companyLocation: '',
+        jobDescription: '',
+      });
+    } else if (!editExperience && showExperience && name === 'Delete') {
+      setSelectedExperienceId(id);
+      setValue({
+        ...value,
+        experience: value.experience.filter((e) => {
+          e.id !== experience.selectedExperienceId;
         }),
       });
     }

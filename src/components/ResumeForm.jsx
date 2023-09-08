@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import PersonalDetailsForm from './PersonalDetailsForm';
 import PersonalDetails from './PersonalDetails';
-import EducationsForm from './EducationsForm';
+import EducationForm from './EducationForm';
 import Educations from './Educations';
 import EditEducation from './EditEducation';
-// import ExperienceForm from './ExperienceForm';
+import ExperienceForm from './ExperienceForm';
+import Experience from './Experience';
+import EditExperience from './EditExperience';
 import Button from './Button';
 import personalDetailsIcon from '../assets/user-solid.svg';
 import angleUp from '../assets/angle-up-solid.svg';
 import angleDown from '../assets/angle-down-solid.svg';
 import educationsIcon from '../assets/user-graduate-solid.svg';
-// import experienceIcon from '../assets/briefcase-solid.svg';
+import experienceIcon from '../assets/briefcase-solid.svg';
 import '../styles/ResumeForm.css';
 
 export default function ResumeForm({
@@ -26,8 +28,15 @@ export default function ResumeForm({
   setAddEducation,
   editEducation,
   setEditEducation,
+  showExperience,
+  setShowExperience,
+  addExperience,
+  setAddExperience,
+  editExperience,
+  setEditExperience,
 }) {
   const [selectedEducationId, setSelectedEducationId] = useState(0);
+  const [selectedExperienceId, setSelectedExperienceId] = useState(0);
 
   function handleShowPersonalDetails() {
     setShowPersonalDetails(!showPersonalDetails);
@@ -37,9 +46,9 @@ export default function ResumeForm({
     setShowEducations(!showEducations);
   }
 
-  // function handleRevealExperience() {
-  //   setRevealExperience(!revealExperience);
-  // }
+  function handleShowExperience() {
+    setShowExperience(!showExperience);
+  }
 
   return (
     <div className="resume-form-wrapper">
@@ -55,14 +64,14 @@ export default function ResumeForm({
           </div>
           {showPersonalDetails ? (
             <img
-              className="hide-details"
+              className="hide-personal-details"
               src={angleUp}
               alt="icon"
               onClick={handleShowPersonalDetails}
             />
           ) : (
             <img
-              className="show-details"
+              className="show-personal-details"
               src={angleDown}
               alt="icon"
               onClick={handleShowPersonalDetails}
@@ -111,7 +120,7 @@ export default function ResumeForm({
         </div>
         {showEducations ? (
           addEducation ? (
-            <EducationsForm
+            <EducationForm
               value={value}
               setValue={setValue}
               addEducation={addEducation}
@@ -153,6 +162,73 @@ export default function ResumeForm({
           )
         ) : null}
       </div>
+
+      <div className="experience-wrapper">
+        <div className="experience-header">
+          <div className="experience-title">
+            <img className="experience-icon" src={experienceIcon} alt="Icon" />
+            <h2>Experience</h2>
+          </div>
+          {showExperience ? (
+            <img
+              className="hide-experiences"
+              src={angleUp}
+              alt="icon"
+              onClick={handleShowExperience}
+            />
+          ) : (
+            <img
+              className="show-experiences"
+              src={angleDown}
+              alt="icon"
+              onClick={handleShowExperience}
+            />
+          )}
+        </div>
+        {showExperience ? (
+          addExperience ? (
+            <ExperienceForm
+              value={value}
+              setValue={setValue}
+              addExperience={addExperience}
+              setAddExperience={setAddExperience}
+            />
+          ) : editExperience ? (
+            <EditExperience
+              value={value}
+              setValue={setValue}
+              editExperience={editExperience}
+              setEditExperience={setEditExperience}
+              selectedExperienceId={selectedExperienceId}
+            />
+          ) : (
+            <>
+              {value.experience.map((experience) => {
+                return (
+                  <Experience
+                    key={experience.id}
+                    id={experience.id}
+                    experience={experience}
+                    selectedExperienceId={selectedExperienceId}
+                    setSelectedExperienceId={setSelectedExperienceId}
+                    editExperience={editExperience}
+                    setEditExperience={setEditExperience}
+                    showExperience={showExperience}
+                    value={value}
+                    setValue={setValue}
+                  />
+                );
+              })}
+
+              <Button
+                name="Add Experience"
+                addExperience={addExperience}
+                setAddExperience={setAddExperience}
+              />
+            </>
+          )
+        ) : null}
+      </div>
       {/* <div className="educations-wrapper">
         <div className="educations-header">
           <div className="educations-title">
@@ -177,7 +253,7 @@ export default function ResumeForm({
               );
             })
           ) : addEducation ? (
-            <EducationsForm
+            <EducationForm
               value={value}
               setValue={setValue}
               addEducation={addEducation}
@@ -229,7 +305,7 @@ export default function ResumeForm({
               setEditEducation={setEditEducation}
             />
           ) : addEducation ? (
-            <EducationsForm
+            <EducationForm
               value={value}
               setValue={setValue}
               showEducations={showEducations}

@@ -1,8 +1,11 @@
 @use 'variables';
 
-.personal-details {
+.experience-list {
+  list-style-type: none;
+}
+
+.experience-details {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 16px;
 }

@@ -1,0 +1,9 @@
+.experience-list {
+  list-style-type: none;
+}
+
+.experience-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}/*# sourceMappingURL=Experiences.css.map */

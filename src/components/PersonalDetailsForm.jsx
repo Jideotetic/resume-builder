@@ -98,6 +98,7 @@ export default function PersonalDetailsForm({
           id="career-summary"
           name="career-summary"
           rows="5"
+          placeholder="Enter Your Career Summary"
           value={value.careerSummary}
           onChange={handleCareerSummaryChange}></textarea>
         <br />
@@ -105,9 +106,9 @@ export default function PersonalDetailsForm({
         <div className="button-container">
           <Button
             name="Save"
-            isActive={isActive}
             value={value}
             setValue={setValue}
+            isActive={isActive}
             editPersonalDetails={editPersonalDetails}
             setEditPersonalDetails={setEditPersonalDetails}
           />

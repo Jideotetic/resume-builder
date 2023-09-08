@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import Favicon from './Favicon';
 import Header from './Header';
 import Main from './Main';
@@ -10,10 +9,6 @@ import ResumeContainer from './ResumeContainer';
 import '../styles/App.css';
 
 export default function App() {
-  /**
-   * status variable to track the state of the application
-   * width variable to handle responsiveness
-   */
   const [status, setStatus] = useState('');
   const [width, setWidth] = useState(window.innerWidth);
   const [showPersonalDetails, setShowPersonalDetails] = useState(false);
@@ -21,7 +16,9 @@ export default function App() {
   const [showEducations, setShowEducations] = useState(false);
   const [addEducation, setAddEducation] = useState(false);
   const [editEducation, setEditEducation] = useState(false);
-  // const [revealExperience, setRevealExperience] = useState(false);
+  const [showExperience, setShowExperience] = useState(false);
+  const [addExperience, setAddExperience] = useState(false);
+  const [editExperience, setEditExperience] = useState(false);
   const [value, setValue] = useState({
     name: 'Abdulbasit Yusuf',
     email: 'jideotetic@gmail.com',
@@ -30,10 +27,15 @@ export default function App() {
     careerSummary: `I’m a highly motivated Front-end developer highly invested in building responsive user interfaces and accessible websites. With strong background in semantic HTML, CSS, and JavaScript, I get my motivations from being able to develop websites with big part of accessibility in mind, when I use accessibility tools on websites I built and it works correctly, I feel fulfilled and motivated to do more. I have 1 year of experience in training and have built a lot of projects HTML5, CSS3, JavaScript, Git & GitHub with incredible ease of adaptation and learning new technologies as need be.`,
     school: '',
     degree: '',
-    company: '',
-    startDate: '',
-    endDate: '',
+    schoolStartDate: '',
+    schoolEndDate: '',
     schoolLocation: '',
+    company: '',
+    position: '',
+    companyStartDate: '',
+    companyEndDate: '',
+    companyLocation: '',
+    jobDescription: '',
     personalDetails: {
       name: 'Abdulbasit Yusuf',
       email: 'jideotetic@gmail.com',
@@ -46,17 +48,24 @@ export default function App() {
         id: 0,
         school: 'Usmanu DanFodiyo University',
         degree: 'Bachelor',
-        startDate: '2013-02',
-        endDate: '2017-11',
-        schoolLocation: 'Sokoto',
+        schoolStartDate: '2013-02',
+        schoolEndDate: '2017-11',
+        schoolLocation: 'Sokoto, Nigeria',
       },
     ],
     experience: [
       {
-        company: '',
-        startDate: '',
-        endDate: '',
-        location: '',
+        id: 0,
+        company: 'Accion Microfinance Bank',
+        position: 'Customer Experience Officer',
+        companyStartDate: '2022-07',
+        companyEndDate: `${new Date().getFullYear()}-${(
+          new Date().getMonth() + 1
+        )
+          .toString()
+          .padStart(2, '0')}`,
+        companyLocation: 'Lagos, Nigeria',
+        jobDescription: [],
       },
     ],
   });
@@ -74,15 +83,12 @@ export default function App() {
 
   useEffect(() => {
     const handleWindowResize = () => {
-      if (width >= breakPoint && showPersonalDetails) {
-        setShowPersonalDetails(showPersonalDetails);
-      }
       setWidth(window.innerWidth);
     };
     window.addEventListener('resize', handleWindowResize);
 
     return () => window.removeEventListener('resize', handleWindowResize);
-  }, [showPersonalDetails, width]);
+  }, []);
 
   return (
     <>
@@ -94,12 +100,12 @@ export default function App() {
             <>
               <div className="button-container">
                 <Button
+                  name="Go Back"
+                  // value={value}
                   status={status}
                   setStatus={setStatus}
-                  name="Go Back"
-                  value={value}
                 />
-                {/* <Button name="Download" /> */}
+                <Button name="Download" />
               </div>
               <ResumeForm
                 value={value}
@@ -114,9 +120,14 @@ export default function App() {
                 setAddEducation={setAddEducation}
                 editEducation={editEducation}
                 setEditEducation={setEditEducation}
+                showExperience={showExperience}
+                setShowExperience={setShowExperience}
+                addExperience={addExperience}
+                setAddExperience={setAddExperience}
+                editExperience={editExperience}
+                setEditExperience={setEditExperience}
               />
               <ResumeContainer value={value} />
-              {/* 08039118294 */}
             </>
           ) : (
             <>
@@ -133,19 +144,25 @@ export default function App() {
                 setAddEducation={setAddEducation}
                 editEducation={editEducation}
                 setEditEducation={setEditEducation}
+                showExperience={showExperience}
+                setShowExperience={setShowExperience}
+                addExperience={addExperience}
+                setAddExperience={setAddExperience}
+                editExperience={editExperience}
+                setEditExperience={setEditExperience}
               />
               <div className="button-container">
                 <Button
+                  name="Go Back"
+                  // value={value}
                   status={status}
                   setStatus={setStatus}
-                  name="Go Back"
-                  value={value}
                 />
                 <Button
+                  name="Preview Resume"
+                  // value={value}
                   status={status}
                   setStatus={setStatus}
-                  name="Preview Resume"
-                  value={value}
                 />
               </div>
             </>
@@ -155,12 +172,12 @@ export default function App() {
             <>
               <div className="button-container">
                 <Button
+                  name="Go Back"
+                  // value={value}
                   status={status}
                   setStatus={setStatus}
-                  name="Go Back"
-                  value={value}
                 />
-                {/* <Button name="Download" /> */}
+                <Button name="Download" />
               </div>
               <ResumeForm
                 value={value}
@@ -175,6 +192,12 @@ export default function App() {
                 setAddEducation={setAddEducation}
                 editEducation={editEducation}
                 setEditEducation={setEditEducation}
+                showExperience={showExperience}
+                setShowExperience={setShowExperience}
+                addExperience={addExperience}
+                setAddExperience={setAddExperience}
+                editExperience={editExperience}
+                setEditExperience={setEditExperience}
               />
               <ResumeContainer value={value} />
             </>
@@ -183,21 +206,21 @@ export default function App() {
               <ResumeContainer value={value} />
               <div className="button-container">
                 <Button
+                  name="Go Back"
+                  // value={value}
                   status={status}
                   setStatus={setStatus}
-                  name="Go Back"
-                  value={value}
                 />
-                {/* <Button name="Download" /> */}
+                <Button name="Download" />
               </div>
             </>
           )
         ) : (
           <Button
+            name="Create Resume"
+            // value={value}
             status={status}
             setStatus={setStatus}
-            name="Create Resume"
-            value={value}
           />
         )}
       </Main>
