@@ -3,8 +3,9 @@ import Button from './Button';
 export default function ExperienceForm({
   value,
   setValue,
-  addExperience,
-  setAddExperience,
+  selectedExperienceId,
+  editExperience,
+  setEditExperience,
 }) {
   function handleCompanyChange(e) {
     setValue({
@@ -109,7 +110,6 @@ export default function ExperienceForm({
           id="location"
           value={value.companyLocation}
           onChange={handleCompanyLocationChange}
-          placeholder="Enter Your Company Location"
         />
         <br />
         <label htmlFor="description">Description</label>
@@ -127,25 +127,25 @@ export default function ExperienceForm({
         <div className="button-container">
           <Button
             name="Save"
-            isActive={isActive}
             value={value}
+            isActive={isActive}
             setValue={setValue}
-            addExperience={addExperience}
-            setAddExperience={setAddExperience}
+            editExperience={editExperience}
+            setEditExperience={setEditExperience}
+            selectedExperienceId={selectedExperienceId}
           />
           <Button
             name="Cancel"
             value={value}
             setValue={setValue}
-            addExperience={addExperience}
-            setAddExperience={setAddExperience}
+            editExperience={editExperience}
+            setEditExperience={setEditExperience}
           />
           <Button
             name="Clear"
             value={value}
             setValue={setValue}
-            addExperience={addExperience}
-            setAddExperience={setAddExperience}
+            editExperience={editExperience}
           />
         </div>
       </fieldset>
