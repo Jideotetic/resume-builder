@@ -32,22 +32,44 @@
   display: flex;
   gap: 10px;
 }
-
-.personal-details-icon,
-.educations-icon,
-.experience-icon,
-.hide-details,
-.show-details,
-.show-educations,
-.hide-educations,
-.reveal-icon {
+.personal-details-wrapper .personal-details-icon,
+.personal-details-wrapper .educations-icon,
+.personal-details-wrapper .experience-icon,
+.personal-details-wrapper .hide-details,
+.personal-details-wrapper .show-details,
+.personal-details-wrapper .show-educations,
+.personal-details-wrapper .hide-educations,
+.personal-details-wrapper .reveal-icon,
+.educations-wrapper .personal-details-icon,
+.educations-wrapper .educations-icon,
+.educations-wrapper .experience-icon,
+.educations-wrapper .hide-details,
+.educations-wrapper .show-details,
+.educations-wrapper .show-educations,
+.educations-wrapper .hide-educations,
+.educations-wrapper .reveal-icon,
+.experience-wrapper .personal-details-icon,
+.experience-wrapper .educations-icon,
+.experience-wrapper .experience-icon,
+.experience-wrapper .hide-details,
+.experience-wrapper .show-details,
+.experience-wrapper .show-educations,
+.experience-wrapper .hide-educations,
+.experience-wrapper .reveal-icon {
   width: 20px;
 }
-
-.hide-details,
-.show-details,
-.show-educations,
-.hide-educations {
+.personal-details-wrapper .hide-details,
+.personal-details-wrapper .show-details,
+.personal-details-wrapper .show-educations,
+.personal-details-wrapper .hide-educations,
+.educations-wrapper .hide-details,
+.educations-wrapper .show-details,
+.educations-wrapper .show-educations,
+.educations-wrapper .hide-educations,
+.experience-wrapper .hide-details,
+.experience-wrapper .show-details,
+.experience-wrapper .show-educations,
+.experience-wrapper .hide-educations {
   cursor: pointer;
 }
 

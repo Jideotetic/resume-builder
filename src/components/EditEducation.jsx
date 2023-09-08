@@ -5,6 +5,7 @@ export default function EditEducation({
   setValue,
   edit,
   setEdit,
+  id,
   revealEducations,
   addEducation,
   setAddEducation,
@@ -70,7 +71,7 @@ export default function EditEducation({
           name="school"
           id="school"
           placeholder="Enter School / University"
-          value={value.educations.school}
+          value={value.educations[id].school}
           onChange={handleSchoolChange}
         />
         <br />
@@ -81,7 +82,7 @@ export default function EditEducation({
           name="degree"
           id="degree"
           placeholder="Enter Degree / Field of Study"
-          value={value.educations.degree}
+          value={value.educations[id].degree}
           onChange={handleDegreeChange}
         />
         <br />
@@ -91,7 +92,7 @@ export default function EditEducation({
           type="month"
           name="start-date"
           id="start-date"
-          value={value.educations.startDate}
+          value={value.educations[id].startDate}
           onChange={handleStartDateChange}
         />
         <br />
@@ -101,7 +102,7 @@ export default function EditEducation({
           type="month"
           name="end-date"
           id="end-date"
-          value={value.educations.endDate}
+          value={value.educations[id].endDate}
           onChange={handleEndDateChange}
         />
         <br />
@@ -111,7 +112,7 @@ export default function EditEducation({
           type="text"
           name="location"
           id="location"
-          value={value.educations.location}
+          value={value.educations[id].location}
           onChange={handleLocationChange}
         />
         <br />

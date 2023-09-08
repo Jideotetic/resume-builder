@@ -15,33 +15,47 @@ export default function App() {
    */
   const [status, setStatus] = useState('');
   const [width, setWidth] = useState(window.innerWidth);
-  const [revealPersonalDetails, setRevealPersonalDetails] = useState(false);
-  const [revealEducations, setRevealEducations] = useState(false);
-  const [revealExperience, setRevealExperience] = useState(false);
+  const [showPersonalDetails, setShowPersonalDetails] = useState(false);
   const [editPersonalDetails, setEditPersonalDetails] = useState(false);
-  const [addEducation, setAddEducation] = useState(false);
-  const [editEducation, setEditEducation] = useState(true);
+  // const [revealEducations, setRevealEducations] = useState(false);
+  // const [revealExperience, setRevealExperience] = useState(false);
+  // const [addEducation, setAddEducation] = useState(false);
+  // const [editEducation, setEditEducation] = useState(true);
   const [value, setValue] = useState({
     name: 'Abdulbasit Yusuf',
     email: 'jideotetic@gmail.com',
     phoneNumber: '09014349835',
     homeAddress: 'Lagos, Nigeria',
     careerSummary: `I’m a highly motivated Front-end developer highly invested in building responsive user interfaces and accessible websites. With strong background in semantic HTML, CSS, and JavaScript, I get my motivations from being able to develop websites with big part of accessibility in mind, when I use accessibility tools on websites I built and it works correctly, I feel fulfilled and motivated to do more. I have 1 year of experience in training and have built a lot of projects HTML5, CSS3, JavaScript, Git & GitHub with incredible ease of adaptation and learning new technologies as need be.`,
-    education: {
-      school: '',
-      degree: '',
-      startDate: '',
-      endDate: '',
-      location: '',
+    school: '',
+    degree: '',
+    company: '',
+    startDate: '',
+    endDate: '',
+    location: '',
+    personalDetails: {
+      name: 'Abdulbasit Yusuf',
+      email: 'jideotetic@gmail.com',
+      phoneNumber: '09014349835',
+      homeAddress: 'Lagos, Nigeria',
+      careerSummary: `I’m a highly motivated Front-end developer highly invested in building responsive user interfaces and accessible websites. With strong background in semantic HTML, CSS, and JavaScript, I get my motivations from being able to develop websites with big part of accessibility in mind, when I use accessibility tools on websites I built and it works correctly, I feel fulfilled and motivated to do more. I have 1 year of experience in training and have built a lot of projects HTML5, CSS3, JavaScript, Git & GitHub with incredible ease of adaptation and learning new technologies as need be.`,
     },
-    experience: {},
     educations: [
       {
+        id: 0,
         school: 'Usmanu DanFodiyo University',
         degree: 'Bachelor',
         startDate: '2013-02',
         endDate: '2017-11',
         location: 'Sokoto',
+      },
+    ],
+    experience: [
+      {
+        company: '',
+        startDate: '',
+        endDate: '',
+        location: '',
       },
     ],
   });
@@ -59,31 +73,17 @@ export default function App() {
 
   useEffect(() => {
     const handleWindowResize = () => {
-      if (
-        width >= breakPoint &&
-        (revealPersonalDetails || revealEducations || revealExperience)
-      ) {
-        setRevealPersonalDetails(revealPersonalDetails);
-        setRevealEducations(revealEducations);
-        setRevealExperience(revealExperience);
+      if (width >= breakPoint && showPersonalDetails) {
+        setShowPersonalDetails(showPersonalDetails);
       }
       setWidth(window.innerWidth);
     };
     window.addEventListener('resize', handleWindowResize);
 
     return () => window.removeEventListener('resize', handleWindowResize);
-  }, [revealPersonalDetails, width, revealEducations, revealExperience]);
+  }, [showPersonalDetails, width]);
 
-  // console.log(
-  //   editPersonalDetails,
-  //   addEducation,
-  //   editEducation,
-  //   value.education.school,
-  //   value.education.degree,
-  //   value.education.startDate,
-  //   value.education.endDate,
-  //   value.education.location
-  // );
+  console.log(width, status, showPersonalDetails, editPersonalDetails);
 
   return (
     <>
@@ -94,25 +94,21 @@ export default function App() {
           width >= breakPoint ? (
             <>
               <div className="button-container">
-                <Button status={status} setStatus={setStatus} name="Go Back" />
-                <Button name="Download" />
+                <Button
+                  status={status}
+                  setStatus={setStatus}
+                  name="Go Back"
+                  value={value}
+                />
+                {/* <Button name="Download" /> */}
               </div>
               <ResumeForm
                 value={value}
                 setValue={setValue}
-                createResume={createResume}
-                revealPersonalDetails={revealPersonalDetails}
-                setRevealPersonalDetails={setRevealPersonalDetails}
-                revealEducations={revealEducations}
-                setRevealEducations={setRevealEducations}
-                revealExperience={revealExperience}
-                setRevealExperience={setRevealExperience}
+                showPersonalDetails={showPersonalDetails}
+                setShowPersonalDetails={setShowPersonalDetails}
                 editPersonalDetails={editPersonalDetails}
                 setEditPersonalDetails={setEditPersonalDetails}
-                addEducation={addEducation}
-                setAddEducation={setAddEducation}
-                editEducation={editEducation}
-                setEditEducation={setEditEducation}
               />
               <ResumeContainer value={value} />
             </>
@@ -121,26 +117,23 @@ export default function App() {
               <ResumeForm
                 value={value}
                 setValue={setValue}
-                createResume={createResume}
-                revealPersonalDetails={revealPersonalDetails}
-                setRevealPersonalDetails={setRevealPersonalDetails}
-                revealEducations={revealEducations}
-                setRevealEducations={setRevealEducations}
-                revealExperience={revealExperience}
-                setRevealExperience={setRevealExperience}
+                showPersonalDetails={showPersonalDetails}
+                setShowPersonalDetails={setShowPersonalDetails}
                 editPersonalDetails={editPersonalDetails}
                 setEditPersonalDetails={setEditPersonalDetails}
-                addEducation={addEducation}
-                setAddEducation={setAddEducation}
-                editEducation={editEducation}
-                setEditEducation={setEditEducation}
               />
               <div className="button-container">
-                <Button status={status} setStatus={setStatus} name="Go Back" />
+                <Button
+                  status={status}
+                  setStatus={setStatus}
+                  name="Go Back"
+                  value={value}
+                />
                 <Button
                   status={status}
                   setStatus={setStatus}
                   name="Preview Resume"
+                  value={value}
                 />
               </div>
             </>
@@ -149,25 +142,21 @@ export default function App() {
           width >= breakPoint ? (
             <>
               <div className="button-container">
-                <Button status={status} setStatus={setStatus} name="Go Back" />
-                <Button name="Download" />
+                <Button
+                  status={status}
+                  setStatus={setStatus}
+                  name="Go Back"
+                  value={value}
+                />
+                {/* <Button name="Download" /> */}
               </div>
               <ResumeForm
                 value={value}
                 setValue={setValue}
-                createResume={createResume}
-                revealPersonalDetails={revealPersonalDetails}
-                setRevealPersonalDetails={setRevealPersonalDetails}
-                revealEducations={revealEducations}
-                setRevealEducations={setRevealEducations}
-                revealExperience={revealExperience}
-                setRevealExperience={setRevealExperience}
+                showPersonalDetails={showPersonalDetails}
+                setShowPersonalDetails={setShowPersonalDetails}
                 editPersonalDetails={editPersonalDetails}
                 setEditPersonalDetails={setEditPersonalDetails}
-                addEducation={addEducation}
-                setAddEducation={setAddEducation}
-                editEducation={editEducation}
-                setEditEducation={setEditEducation}
               />
               <ResumeContainer value={value} />
             </>
@@ -175,13 +164,23 @@ export default function App() {
             <>
               <ResumeContainer value={value} />
               <div className="button-container">
-                <Button status={status} setStatus={setStatus} name="Go Back" />
-                <Button name="Download" />
+                <Button
+                  status={status}
+                  setStatus={setStatus}
+                  name="Go Back"
+                  value={value}
+                />
+                {/* <Button name="Download" /> */}
               </div>
             </>
           )
         ) : (
-          <Button status={status} setStatus={setStatus} name="Create Resume" />
+          <Button
+            status={status}
+            setStatus={setStatus}
+            name="Create Resume"
+            value={value}
+          />
         )}
       </Main>
       <Footer />

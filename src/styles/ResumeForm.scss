@@ -23,24 +23,24 @@
     display: flex;
     gap: 10px;
   }
-}
 
-.personal-details-icon,
-.educations-icon,
-.experience-icon,
-.hide-details,
-.show-details,
-.show-educations,
-.hide-educations,
-.reveal-icon {
-  width: 20px;
-}
+  .personal-details-icon,
+  .educations-icon,
+  .experience-icon,
+  .hide-details,
+  .show-details,
+  .show-educations,
+  .hide-educations,
+  .reveal-icon {
+    width: 20px;
+  }
 
-.hide-details,
-.show-details,
-.show-educations,
-.hide-educations {
-  cursor: pointer;
+  .hide-details,
+  .show-details,
+  .show-educations,
+  .hide-educations {
+    cursor: pointer;
+  }
 }
 
 fieldset {

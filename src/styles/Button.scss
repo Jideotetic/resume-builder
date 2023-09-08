@@ -18,6 +18,12 @@ button:hover {
   transform: scale(1.1);
 }
 
+button:disabled {
+  cursor: not-allowed;
+  transform: unset;
+  opacity: 0.5;
+}
+
 .create-resume-button,
 .add-education-button {
   margin: 0 auto;
