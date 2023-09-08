@@ -1,19 +1,13 @@
 import '../styles/Button.css';
 
 export default function Button({
-  value,
-  setValue,
   status,
   setStatus,
   name,
+  value,
+  setValue,
   editPersonalDetails,
   setEditPersonalDetails,
-  revealPersonalDetails,
-  revealEducations,
-  addEducation,
-  setAddEducation,
-  editEducation,
-  setEditEducation,
 }) {
   function handleButtonClick() {
     if (status === '' && name === 'Create Resume') {
@@ -27,58 +21,38 @@ export default function Button({
     } else if (!editPersonalDetails && name === 'Edit') {
       setEditPersonalDetails(!editPersonalDetails);
     } else if (editPersonalDetails && name === 'Save') {
-      setEditPersonalDetails(!editPersonalDetails);
-    } else if (!addEducation && name === 'Add Education') {
-      setAddEducation(!addEducation);
-    } else if (addEducation && name === 'Save') {
-      setAddEducation(!addEducation);
-      value.educations.push(value.education);
       setValue({
         ...value,
-        education: {
-          ...value.education,
-          school: '',
-          degree: '',
-          startDate: '',
-          endDate: '',
-          location: '',
+        personalDetails: {
+          ...value.personalDetails,
+          name: value.name,
+          email: value.email,
+          phoneNumber: value.phoneNumber,
+          homeAddress: value.homeAddress,
+          careerSummary: value.careerSummary,
         },
       });
-    } else if (addEducation && name === 'Cancel') {
-      setAddEducation(!addEducation);
-    } else if (editEducation && name === 'Edit' && revealEducations) {
-      setEditEducation(!editEducation);
-    } else if (!editEducation && name === 'Save' && revealEducations) {
-      setEditEducation(!editEducation);
+      setEditPersonalDetails(!editPersonalDetails);
+    } else if (editPersonalDetails && name === 'Cancel') {
+      setValue({
+        ...value,
+        name: value.personalDetails.name,
+        email: value.personalDetails.email,
+        phoneNumber: value.personalDetails.phoneNumber,
+        homeAddress: value.personalDetails.homeAddress,
+        careerSummary: value.personalDetails.careerSummary,
+      });
+      setEditPersonalDetails(!editPersonalDetails);
+    } else if (editPersonalDetails && name === 'Clear') {
+      setValue({
+        ...value,
+        name: '',
+        email: '',
+        phoneNumber: '',
+        homeAddress: '',
+        careerSummary: '',
+      });
     }
-
-    //   else if (!edit && name === 'Edit' && revealPersonalDetails) {
-    //     setEdit(!edit);
-    //   } else if (edit && name === 'Save' && revealPersonalDetails) {
-    //     setEdit(!edit);
-    //   } else if (!addEducation && name === 'Add Education' && revealEducations) {
-    //     setAddEducation(!addEducation);
-    //   } else if (addEducation && name === 'Save' && revealEducations) {
-    //     setAddEducation(!addEducation);
-    //     value.educations.push(value.education);
-    //     setValue({
-    //       ...value,
-    //       education: {
-    //         ...value.education,
-    //         school: '',
-    //         degree: '',
-    //         startDate: '',
-    //         endDate: '',
-    //         location: '',
-    //       },
-    //     });
-    //   } else if (addEducation && name === 'Cancel' && revealEducations) {
-    //     setAddEducation(!addEducation);
-    //   } else if (editEducation && name === 'Edit' && revealEducations) {
-    //     setEditEducation(!editEducation);
-    //   } else if (!editEducation && name === 'Save' && revealEducations) {
-    //     setEditEducation(!editEducation);
-    //   }
   }
 
   function splitName(name) {
@@ -86,7 +60,17 @@ export default function Button({
   }
 
   return (
-    <button className={`${splitName(name)}-button`} onClick={handleButtonClick}>
+    <button
+      disabled={
+        name === 'Save' &&
+        (!value.name ||
+          !value.email ||
+          !value.phoneNumber ||
+          !value.homeAddress ||
+          !value.careerSummary)
+      }
+      className={`${splitName(name)}-button`}
+      onClick={handleButtonClick}>
       {name}
     </button>
   );

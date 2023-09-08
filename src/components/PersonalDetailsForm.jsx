@@ -95,11 +95,29 @@ export default function PersonalDetailsForm({
           onChange={handleCareerSummaryChange}></textarea>
         <br />
         <br />
-        <Button
-          name="Save"
-          editPersonalDetails={editPersonalDetails}
-          setEditPersonalDetails={setEditPersonalDetails}
-        />
+        <div className="button-container">
+          <Button
+            name="Save"
+            value={value}
+            setValue={setValue}
+            editPersonalDetails={editPersonalDetails}
+            setEditPersonalDetails={setEditPersonalDetails}
+          />
+          <Button
+            name="Cancel"
+            value={value}
+            setValue={setValue}
+            editPersonalDetails={editPersonalDetails}
+            setEditPersonalDetails={setEditPersonalDetails}
+          />
+          <Button
+            name="Clear"
+            value={value}
+            setValue={setValue}
+            editPersonalDetails={editPersonalDetails}
+            setEditPersonalDetails={setEditPersonalDetails}
+          />
+        </div>
       </fieldset>
     </>
   );
