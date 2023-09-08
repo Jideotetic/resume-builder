@@ -1,14 +1,15 @@
+import { useState } from 'react';
 import PersonalDetailsForm from './PersonalDetailsForm';
 import PersonalDetails from './PersonalDetails';
-// import EducationsForm from './EducationsForm';
-// import Educations from './Educations';
-// import EditEducation from './EditEducation';
+import EducationsForm from './EducationsForm';
+import Educations from './Educations';
+import EditEducation from './EditEducation';
 // import ExperienceForm from './ExperienceForm';
-// import Button from './Button';
+import Button from './Button';
 import personalDetailsIcon from '../assets/user-solid.svg';
 import angleUp from '../assets/angle-up-solid.svg';
 import angleDown from '../assets/angle-down-solid.svg';
-// import educationsIcon from '../assets/user-graduate-solid.svg';
+import educationsIcon from '../assets/user-graduate-solid.svg';
 // import experienceIcon from '../assets/briefcase-solid.svg';
 import '../styles/ResumeForm.css';
 
@@ -19,14 +20,22 @@ export default function ResumeForm({
   setShowPersonalDetails,
   editPersonalDetails,
   setEditPersonalDetails,
+  showEducations,
+  setShowEducations,
+  addEducation,
+  setAddEducation,
+  editEducation,
+  setEditEducation,
 }) {
+  const [selectedEducationId, setSelectedEducationId] = useState(0);
+
   function handleShowPersonalDetails() {
     setShowPersonalDetails(!showPersonalDetails);
   }
 
-  // function handleRevealEducations() {
-  //   setRevealEducations(!revealEducations);
-  // }
+  function handleShowEducations() {
+    setShowEducations(!showEducations);
+  }
 
   // function handleRevealExperience() {
   //   setRevealExperience(!revealExperience);
@@ -73,7 +82,74 @@ export default function ResumeForm({
               value={value}
               editPersonalDetails={editPersonalDetails}
               setEditPersonalDetails={setEditPersonalDetails}
+              showPersonalDetails={showPersonalDetails}
             />
+          )
+        ) : null}
+      </div>
+      <div className="educations-wrapper">
+        <div className="educations-header">
+          <div className="educations-title">
+            <img className="educations-icon" src={educationsIcon} alt="Icon" />
+            <h2>Educations</h2>
+          </div>
+          {showEducations ? (
+            <img
+              className="hide-educations"
+              src={angleUp}
+              alt="icon"
+              onClick={handleShowEducations}
+            />
+          ) : (
+            <img
+              className="show-educations"
+              src={angleDown}
+              alt="icon"
+              onClick={handleShowEducations}
+            />
+          )}
+        </div>
+        {showEducations ? (
+          addEducation ? (
+            <EducationsForm
+              value={value}
+              setValue={setValue}
+              addEducation={addEducation}
+              setAddEducation={setAddEducation}
+            />
+          ) : editEducation ? (
+            <EditEducation
+              value={value}
+              setValue={setValue}
+              editEducation={editEducation}
+              setEditEducation={setEditEducation}
+              selectedEducationId={selectedEducationId}
+            />
+          ) : (
+            <>
+              {value.educations.map((education) => {
+                return (
+                  <Educations
+                    key={education.id}
+                    id={education.id}
+                    education={education}
+                    selectedEducationId={selectedEducationId}
+                    setSelectedEducationId={setSelectedEducationId}
+                    editEducation={editEducation}
+                    setEditEducation={setEditEducation}
+                    showEducations={showEducations}
+                    value={value}
+                    setValue={setValue}
+                  />
+                );
+              })}
+
+              <Button
+                name="Add Education"
+                addEducation={addEducation}
+                setAddEducation={setAddEducation}
+              />
+            </>
           )
         ) : null}
       </div>
@@ -83,23 +159,9 @@ export default function ResumeForm({
             <img className="educations-icon" src={educationsIcon} alt="Icon" />
             <h2>Educations</h2>
           </div>
-          {revealEducations ? (
-            <img
-              className="hide-educations"
-              src={angleUp}
-              alt="icon"
-              onClick={handleRevealEducations}
-            />
-          ) : (
-            <img
-              className="show-educations"
-              src={angleDown}
-              alt="icon"
-              onClick={handleRevealEducations}
-            />
-          )}
+          
         </div>
-        {revealEducations ? (
+        {showEducations ? (
           editEducation ? (
             value.educations.map((education, i) => {
               return (
@@ -146,13 +208,13 @@ export default function ResumeForm({
             </>
           )
         ) : null}
-        {revealEducations ? (
+        {showEducations ? (
           editEducation ? (
             <EditEducation />
           ) : value.educations.length === 0 && !addEducation ? (
             <Button
               name="Add Education"
-              revealEducations={revealEducations}
+              showEducations={showEducations}
               addEducation={addEducation}
               setAddEducation={setAddEducation}
             />
@@ -160,7 +222,7 @@ export default function ResumeForm({
             <Educations
               value={value}
               setValue={setValue}
-              revealEducations={revealEducations}
+              showEducations={showEducations}
               addEducation={addEducation}
               setAddEducation={setAddEducation}
               editEducation={editEducation}
@@ -170,7 +232,7 @@ export default function ResumeForm({
             <EducationsForm
               value={value}
               setValue={setValue}
-              revealEducations={revealEducations}
+              showEducations={showEducations}
               addEducation={addEducation}
               setAddEducation={setAddEducation}
             />

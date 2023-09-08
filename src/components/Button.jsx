@@ -1,13 +1,24 @@
 import '../styles/Button.css';
 
 export default function Button({
-  status,
-  setStatus,
   name,
   value,
+  status,
+  isActive,
   setValue,
+  setStatus,
+  addEducation,
+  setAddEducation,
   editPersonalDetails,
+  editEducation,
+  setEditEducation,
   setEditPersonalDetails,
+  showPersonalDetails,
+  showEducations,
+  setSelectedEducationId,
+  selectedEducationId,
+  id,
+  education,
 }) {
   function handleButtonClick() {
     if (status === '' && name === 'Create Resume') {
@@ -18,7 +29,7 @@ export default function Button({
       setStatus('creating');
     } else if (status === 'creating' && name === 'Preview Resume') {
       setStatus('previewing');
-    } else if (!editPersonalDetails && name === 'Edit') {
+    } else if (showPersonalDetails && !editPersonalDetails && name === 'Edit') {
       setEditPersonalDetails(!editPersonalDetails);
     } else if (editPersonalDetails && name === 'Save') {
       setValue({
@@ -52,6 +63,107 @@ export default function Button({
         homeAddress: '',
         careerSummary: '',
       });
+    } else if (!addEducation && name === 'Add Education') {
+      setAddEducation(!addEducation);
+    } else if (addEducation && name === 'Save') {
+      setValue({
+        ...value,
+        educations: [
+          ...value.educations,
+          {
+            id: value.educations.length,
+            school: value.school,
+            degree: value.degree,
+            startDate: value.startDate,
+            endDate: value.endDate,
+            schoolLocation: value.schoolLocation,
+          },
+        ],
+        school: '',
+        degree: '',
+        startDate: '',
+        endDate: '',
+        schoolLocation: '',
+      });
+      setAddEducation(!addEducation);
+    } else if (addEducation && name === 'Cancel') {
+      setValue({
+        ...value,
+        school: '',
+        degree: '',
+        startDate: '',
+        endDate: '',
+        schoolLocation: '',
+      });
+      setAddEducation(!addEducation);
+    } else if (addEducation && name === 'Clear') {
+      setValue({
+        ...value,
+        school: '',
+        degree: '',
+        startDate: '',
+        endDate: '',
+        schoolLocation: '',
+      });
+    } else if (showEducations && !editEducation && name === 'Edit') {
+      setSelectedEducationId(id);
+      setValue({
+        ...value,
+        school: value.educations[selectedEducationId].school,
+        degree: value.educations[selectedEducationId].degree,
+        startDate: value.educations[selectedEducationId].startDate,
+        endDate: value.educations[selectedEducationId].endDate,
+        schoolLocation: value.educations[selectedEducationId].schoolLocation,
+      });
+      setEditEducation(!editEducation);
+    } else if (editEducation && name === 'Save') {
+      setValue({
+        ...value,
+        educations: [
+          {
+            ...value.educations[selectedEducationId],
+            id: selectedEducationId,
+            school: value.school,
+            degree: value.degree,
+            startDate: value.startDate,
+            endDate: value.endDate,
+            schoolLocation: value.schoolLocation,
+          },
+        ],
+        school: '',
+        degree: '',
+        startDate: '',
+        endDate: '',
+        schoolLocation: '',
+      });
+      setEditEducation(!editEducation);
+    } else if (editEducation && name === 'Cancel') {
+      setValue({
+        ...value,
+        school: '',
+        degree: '',
+        startDate: '',
+        endDate: '',
+        schoolLocation: '',
+      });
+      setEditEducation(!editEducation);
+    } else if (editEducation && name === 'Clear') {
+      setValue({
+        ...value,
+        school: '',
+        degree: '',
+        startDate: '',
+        endDate: '',
+        schoolLocation: '',
+      });
+    } else if (!editEducation && name === 'Delete') {
+      setSelectedEducationId(id);
+      setValue({
+        ...value,
+        educations: value.educations.filter((e) => {
+          e.id !== education.selectedEducationId;
+        }),
+      });
     }
   }
 
@@ -61,14 +173,7 @@ export default function Button({
 
   return (
     <button
-      disabled={
-        name === 'Save' &&
-        (!value.name ||
-          !value.email ||
-          !value.phoneNumber ||
-          !value.homeAddress ||
-          !value.careerSummary)
-      }
+      disabled={isActive}
       className={`${splitName(name)}-button`}
       onClick={handleButtonClick}>
       {name}

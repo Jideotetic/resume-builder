@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import Favicon from './Favicon';
 import Header from './Header';
 import Main from './Main';
@@ -17,10 +18,10 @@ export default function App() {
   const [width, setWidth] = useState(window.innerWidth);
   const [showPersonalDetails, setShowPersonalDetails] = useState(false);
   const [editPersonalDetails, setEditPersonalDetails] = useState(false);
-  // const [revealEducations, setRevealEducations] = useState(false);
+  const [showEducations, setShowEducations] = useState(false);
+  const [addEducation, setAddEducation] = useState(false);
+  const [editEducation, setEditEducation] = useState(false);
   // const [revealExperience, setRevealExperience] = useState(false);
-  // const [addEducation, setAddEducation] = useState(false);
-  // const [editEducation, setEditEducation] = useState(true);
   const [value, setValue] = useState({
     name: 'Abdulbasit Yusuf',
     email: 'jideotetic@gmail.com',
@@ -32,7 +33,7 @@ export default function App() {
     company: '',
     startDate: '',
     endDate: '',
-    location: '',
+    schoolLocation: '',
     personalDetails: {
       name: 'Abdulbasit Yusuf',
       email: 'jideotetic@gmail.com',
@@ -47,7 +48,7 @@ export default function App() {
         degree: 'Bachelor',
         startDate: '2013-02',
         endDate: '2017-11',
-        location: 'Sokoto',
+        schoolLocation: 'Sokoto',
       },
     ],
     experience: [
@@ -83,8 +84,6 @@ export default function App() {
     return () => window.removeEventListener('resize', handleWindowResize);
   }, [showPersonalDetails, width]);
 
-  console.log(width, status, showPersonalDetails, editPersonalDetails);
-
   return (
     <>
       <Favicon />
@@ -109,8 +108,15 @@ export default function App() {
                 setShowPersonalDetails={setShowPersonalDetails}
                 editPersonalDetails={editPersonalDetails}
                 setEditPersonalDetails={setEditPersonalDetails}
+                showEducations={showEducations}
+                setShowEducations={setShowEducations}
+                addEducation={addEducation}
+                setAddEducation={setAddEducation}
+                editEducation={editEducation}
+                setEditEducation={setEditEducation}
               />
               <ResumeContainer value={value} />
+              {/* 08039118294 */}
             </>
           ) : (
             <>
@@ -121,6 +127,12 @@ export default function App() {
                 setShowPersonalDetails={setShowPersonalDetails}
                 editPersonalDetails={editPersonalDetails}
                 setEditPersonalDetails={setEditPersonalDetails}
+                showEducations={showEducations}
+                setShowEducations={setShowEducations}
+                addEducation={addEducation}
+                setAddEducation={setAddEducation}
+                editEducation={editEducation}
+                setEditEducation={setEditEducation}
               />
               <div className="button-container">
                 <Button
@@ -157,6 +169,12 @@ export default function App() {
                 setShowPersonalDetails={setShowPersonalDetails}
                 editPersonalDetails={editPersonalDetails}
                 setEditPersonalDetails={setEditPersonalDetails}
+                showEducations={showEducations}
+                setShowEducations={setShowEducations}
+                addEducation={addEducation}
+                setAddEducation={setAddEducation}
+                editEducation={editEducation}
+                setEditEducation={setEditEducation}
               />
               <ResumeContainer value={value} />
             </>

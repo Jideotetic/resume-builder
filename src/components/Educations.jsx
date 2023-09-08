@@ -5,6 +5,12 @@ export default function Educations({
   education,
   editEducation,
   setEditEducation,
+  showEducations,
+  selectedEducationId,
+  setSelectedEducationId,
+  id,
+  value,
+  setValue,
 }) {
   return (
     <ul className="educations-list">
@@ -13,10 +19,27 @@ export default function Educations({
         <div className="button-container">
           <Button
             name="Edit"
+            id={id}
+            value={value}
+            setValue={setValue}
             editEducation={editEducation}
             setEditEducation={setEditEducation}
+            showEducations={showEducations}
+            setSelectedEducationId={setSelectedEducationId}
+            selectedEducationId={selectedEducationId}
           />
-          <Button name="Delete" />
+          <Button
+            name="Delete"
+            id={id}
+            value={value}
+            setValue={setValue}
+            education={education}
+            editEducation={editEducation}
+            setEditEducation={setEditEducation}
+            showEducations={showEducations}
+            setSelectedEducationId={setSelectedEducationId}
+            selectedEducationId={selectedEducationId}
+          />
         </div>
       </div>
     </ul>

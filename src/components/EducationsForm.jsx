@@ -9,54 +9,40 @@ export default function EducationsForm({
   function handleSchoolChange(e) {
     setValue({
       ...value,
-      education: {
-        ...value.education,
-        school: e.target.value,
-      },
+      school: e.target.value,
     });
   }
 
   function handleDegreeChange(e) {
     setValue({
       ...value,
-      education: {
-        ...value.education,
-        degree: e.target.value,
-      },
+      degree: e.target.value,
     });
   }
 
   function handleStartDateChange(e) {
     setValue({
       ...value,
-      education: {
-        ...value.education,
-        startDate: e.target.value,
-      },
+      startDate: e.target.value,
     });
   }
 
   function handleEndDateChange(e) {
     setValue({
       ...value,
-      education: {
-        ...value.education,
-        endDate: e.target.value,
-      },
+      endDate: e.target.value,
     });
   }
 
   function handleLocationChange(e) {
     setValue({
       ...value,
-      education: {
-        ...value.education,
-        location: e.target.value,
-      },
+      schoolLocation: e.target.value,
     });
   }
 
-  
+  const isActive =
+    !value.school || !value.degree || !value.startDate || !value.endDate;
 
   return (
     <>
@@ -68,7 +54,7 @@ export default function EducationsForm({
           name="school"
           id="school"
           placeholder="Enter School / University"
-          value={value.education.school}
+          value={value.school}
           onChange={handleSchoolChange}
         />
         <br />
@@ -79,7 +65,7 @@ export default function EducationsForm({
           name="degree"
           id="degree"
           placeholder="Enter Degree / Field of Study"
-          value={value.education.degree}
+          value={value.degree}
           onChange={handleDegreeChange}
         />
         <br />
@@ -89,7 +75,7 @@ export default function EducationsForm({
           type="month"
           name="start-date"
           id="start-date"
-          value={value.education.startDate}
+          value={value.startDate}
           onChange={handleStartDateChange}
         />
         <br />
@@ -99,7 +85,7 @@ export default function EducationsForm({
           type="month"
           name="end-date"
           id="end-date"
-          value={value.education.endDate}
+          value={value.endDate}
           onChange={handleEndDateChange}
         />
         <br />
@@ -109,7 +95,7 @@ export default function EducationsForm({
           type="text"
           name="location"
           id="location"
-          value={value.education.location}
+          value={value.schoolLocation}
           onChange={handleLocationChange}
         />
         <br />
@@ -117,15 +103,25 @@ export default function EducationsForm({
         <div className="button-container">
           <Button
             name="Save"
+            isActive={isActive}
             value={value}
             setValue={setValue}
             addEducation={addEducation}
             setAddEducation={setAddEducation}
           />
           <Button
+            name="Cancel"
+            value={value}
+            setValue={setValue}
             addEducation={addEducation}
             setAddEducation={setAddEducation}
-            name="Cancel"
+          />
+          <Button
+            name="Clear"
+            value={value}
+            setValue={setValue}
+            addEducation={addEducation}
+            setAddEducation={setAddEducation}
           />
         </div>
       </fieldset>
