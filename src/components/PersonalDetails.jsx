@@ -5,6 +5,7 @@ export default function PersonalDetails({
   value,
   setEditPersonalDetails,
   editPersonalDetails,
+  showPersonalDetails,
 }) {
   return (
     <>
@@ -20,6 +21,7 @@ export default function PersonalDetails({
           value={value}
           editPersonalDetails={editPersonalDetails}
           setEditPersonalDetails={setEditPersonalDetails}
+          showPersonalDetails={showPersonalDetails}
         />
       </div>
     </>

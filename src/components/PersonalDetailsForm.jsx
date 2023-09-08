@@ -41,6 +41,13 @@ export default function PersonalDetailsForm({
     });
   }
 
+  const isActive =
+    !value.name ||
+    !value.email ||
+    !value.phoneNumber ||
+    !value.homeAddress ||
+    !value.careerSummary;
+
   return (
     <>
       <fieldset>
@@ -98,6 +105,7 @@ export default function PersonalDetailsForm({
         <div className="button-container">
           <Button
             name="Save"
+            isActive={isActive}
             value={value}
             setValue={setValue}
             editPersonalDetails={editPersonalDetails}

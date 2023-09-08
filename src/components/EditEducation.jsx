@@ -3,64 +3,48 @@ import Button from './Button';
 export default function EditEducation({
   value,
   setValue,
-  edit,
-  setEdit,
-  id,
-  revealEducations,
-  addEducation,
-  setAddEducation,
+  editEducation,
+  setEditEducation,
+  selectedEducationId,
 }) {
   function handleSchoolChange(e) {
     setValue({
       ...value,
-      education: {
-        ...value.education,
-        school: e.target.value,
-      },
+      school: e.target.value,
     });
   }
 
   function handleDegreeChange(e) {
     setValue({
       ...value,
-      education: {
-        ...value.education,
-        degree: e.target.value,
-      },
+      degree: e.target.value,
     });
   }
 
   function handleStartDateChange(e) {
     setValue({
       ...value,
-      education: {
-        ...value.education,
-        startDate: e.target.value,
-      },
+      startDate: e.target.value,
     });
   }
 
   function handleEndDateChange(e) {
     setValue({
       ...value,
-      education: {
-        ...value.education,
-        endDate: e.target.value,
-      },
+      endDate: e.target.value,
     });
   }
 
   function handleLocationChange(e) {
     setValue({
       ...value,
-      education: {
-        ...value.education,
-        location: e.target.value,
-      },
+      schoolLocation: e.target.value,
     });
   }
 
-  console.log(value);
+  const isActive =
+    !value.school || !value.degree || !value.startDate || !value.endDate;
+
   return (
     <>
       <fieldset>
@@ -71,7 +55,7 @@ export default function EditEducation({
           name="school"
           id="school"
           placeholder="Enter School / University"
-          value={value.educations[id].school}
+          value={value.school}
           onChange={handleSchoolChange}
         />
         <br />
@@ -82,7 +66,7 @@ export default function EditEducation({
           name="degree"
           id="degree"
           placeholder="Enter Degree / Field of Study"
-          value={value.educations[id].degree}
+          value={value.degree}
           onChange={handleDegreeChange}
         />
         <br />
@@ -92,7 +76,7 @@ export default function EditEducation({
           type="month"
           name="start-date"
           id="start-date"
-          value={value.educations[id].startDate}
+          value={value.startDate}
           onChange={handleStartDateChange}
         />
         <br />
@@ -102,7 +86,7 @@ export default function EditEducation({
           type="month"
           name="end-date"
           id="end-date"
-          value={value.educations[id].endDate}
+          value={value.endDate}
           onChange={handleEndDateChange}
         />
         <br />
@@ -112,7 +96,7 @@ export default function EditEducation({
           type="text"
           name="location"
           id="location"
-          value={value.educations[id].location}
+          value={value.schoolLocation}
           onChange={handleLocationChange}
         />
         <br />
@@ -121,22 +105,24 @@ export default function EditEducation({
           <Button
             name="Save"
             value={value}
+            isActive={isActive}
             setValue={setValue}
-            edit={edit}
-            setEdit={setEdit}
-            revealEducations={revealEducations}
-            addEducation={addEducation}
-            setAddEducation={setAddEducation}
+            editEducation={editEducation}
+            setEditEducation={setEditEducation}
+            selectedEducationId={selectedEducationId}
           />
           <Button
+            name="Cancel"
             value={value}
             setValue={setValue}
-            edit={edit}
-            setEdit={setEdit}
-            revealEducations={revealEducations}
-            addEducation={addEducation}
-            setAddEducation={setAddEducation}
-            name="Cancel"
+            editEducation={editEducation}
+            setEditEducation={setEditEducation}
+          />
+          <Button
+            name="Clear"
+            value={value}
+            setValue={setValue}
+            editEducation={editEducation}
           />
         </div>
       </fieldset>
