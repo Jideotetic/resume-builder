@@ -18,7 +18,7 @@ export default function Favicon() {
    * getFaviconPath changes the favicon path
    */
   const getFaviconPath = (isDarkMode = false) => {
-    return `/favicon/${isDarkMode ? 'light-cv-icon?' : 'dark-cv-icon?'}.svg`;
+    return `/favicon/${isDarkMode ? 'light-cv-icon' : 'dark-cv-icon'}.svg?`;
   };
 
   useEffect(() => {
