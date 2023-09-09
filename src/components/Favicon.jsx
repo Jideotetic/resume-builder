@@ -12,13 +12,13 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
  * to update the path if there is a change in color mode
  */
 export default function Favicon() {
-  const [faviconHref, setFaviconHref] = useState('/favicon/light-cv-icon.svg');
+  const [faviconHref, setFaviconHref] = useState('/favicon/light-cv-icon.svg?');
 
   /**
    * getFaviconPath changes the favicon path
    */
   const getFaviconPath = (isDarkMode = false) => {
-    return `/favicon/${isDarkMode ? 'light-cv-icon' : 'dark-cv-icon'}.svg`;
+    return `/favicon/${isDarkMode ? 'light-cv-icon?' : 'dark-cv-icon?'}.svg`;
   };
 
   useEffect(() => {
