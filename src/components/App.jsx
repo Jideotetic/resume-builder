@@ -99,12 +99,7 @@ export default function App() {
           width >= breakPoint ? (
             <>
               <div className="button-container">
-                <Button
-                  name="Go Back"
-                  // value={value}
-                  status={status}
-                  setStatus={setStatus}
-                />
+                <Button name="Go Back" status={status} setStatus={setStatus} />
                 <Button name="Download" />
               </div>
               <ResumeForm
@@ -152,15 +147,9 @@ export default function App() {
                 setEditExperience={setEditExperience}
               />
               <div className="button-container">
-                <Button
-                  name="Go Back"
-                  // value={value}
-                  status={status}
-                  setStatus={setStatus}
-                />
+                <Button name="Go Back" status={status} setStatus={setStatus} />
                 <Button
                   name="Preview Resume"
-                  // value={value}
                   status={status}
                   setStatus={setStatus}
                 />
@@ -171,12 +160,7 @@ export default function App() {
           width >= breakPoint ? (
             <>
               <div className="button-container">
-                <Button
-                  name="Go Back"
-                  // value={value}
-                  status={status}
-                  setStatus={setStatus}
-                />
+                <Button name="Go Back" status={status} setStatus={setStatus} />
                 <Button name="Download" />
               </div>
               <ResumeForm
@@ -205,23 +189,13 @@ export default function App() {
             <>
               <ResumeContainer value={value} />
               <div className="button-container">
-                <Button
-                  name="Go Back"
-                  // value={value}
-                  status={status}
-                  setStatus={setStatus}
-                />
+                <Button name="Go Back" status={status} setStatus={setStatus} />
                 <Button name="Download" />
               </div>
             </>
           )
         ) : (
-          <Button
-            name="Create Resume"
-            // value={value}
-            status={status}
-            setStatus={setStatus}
-          />
+          <Button name="Create Resume" status={status} setStatus={setStatus} />
         )}
       </Main>
       <Footer />

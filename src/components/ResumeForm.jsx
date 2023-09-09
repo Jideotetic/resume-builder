@@ -49,7 +49,6 @@ export default function ResumeForm({
   function handleShowExperience() {
     setShowExperience(!showExperience);
   }
-
   return (
     <div className="resume-form-wrapper">
       <div className="personal-details-wrapper">
@@ -93,6 +92,72 @@ export default function ResumeForm({
               setEditPersonalDetails={setEditPersonalDetails}
               showPersonalDetails={showPersonalDetails}
             />
+          )
+        ) : null}
+      </div>
+      <div className="experience-wrapper">
+        <div className="experience-header">
+          <div className="experience-title">
+            <img className="experience-icon" src={experienceIcon} alt="Icon" />
+            <h2>Experience</h2>
+          </div>
+          {showExperience ? (
+            <img
+              className="hide-experiences"
+              src={angleUp}
+              alt="icon"
+              onClick={handleShowExperience}
+            />
+          ) : (
+            <img
+              className="show-experiences"
+              src={angleDown}
+              alt="icon"
+              onClick={handleShowExperience}
+            />
+          )}
+        </div>
+        {showExperience ? (
+          addExperience ? (
+            <ExperienceForm
+              value={value}
+              setValue={setValue}
+              addExperience={addExperience}
+              setAddExperience={setAddExperience}
+            />
+          ) : editExperience ? (
+            <EditExperience
+              value={value}
+              setValue={setValue}
+              editExperience={editExperience}
+              setEditExperience={setEditExperience}
+              selectedExperienceId={selectedExperienceId}
+            />
+          ) : (
+            <>
+              {value.experience.map((experience) => {
+                return (
+                  <Experience
+                    key={experience.id}
+                    id={experience.id}
+                    experience={experience}
+                    selectedExperienceId={selectedExperienceId}
+                    setSelectedExperienceId={setSelectedExperienceId}
+                    editExperience={editExperience}
+                    setEditExperience={setEditExperience}
+                    showExperience={showExperience}
+                    value={value}
+                    setValue={setValue}
+                  />
+                );
+              })}
+
+              <Button
+                name="Add Experience"
+                addExperience={addExperience}
+                setAddExperience={setAddExperience}
+              />
+            </>
           )
         ) : null}
       </div>
@@ -162,185 +227,6 @@ export default function ResumeForm({
           )
         ) : null}
       </div>
-
-      <div className="experience-wrapper">
-        <div className="experience-header">
-          <div className="experience-title">
-            <img className="experience-icon" src={experienceIcon} alt="Icon" />
-            <h2>Experience</h2>
-          </div>
-          {showExperience ? (
-            <img
-              className="hide-experiences"
-              src={angleUp}
-              alt="icon"
-              onClick={handleShowExperience}
-            />
-          ) : (
-            <img
-              className="show-experiences"
-              src={angleDown}
-              alt="icon"
-              onClick={handleShowExperience}
-            />
-          )}
-        </div>
-        {showExperience ? (
-          addExperience ? (
-            <ExperienceForm
-              value={value}
-              setValue={setValue}
-              addExperience={addExperience}
-              setAddExperience={setAddExperience}
-            />
-          ) : editExperience ? (
-            <EditExperience
-              value={value}
-              setValue={setValue}
-              editExperience={editExperience}
-              setEditExperience={setEditExperience}
-              selectedExperienceId={selectedExperienceId}
-            />
-          ) : (
-            <>
-              {value.experience.map((experience) => {
-                return (
-                  <Experience
-                    key={experience.id}
-                    id={experience.id}
-                    experience={experience}
-                    selectedExperienceId={selectedExperienceId}
-                    setSelectedExperienceId={setSelectedExperienceId}
-                    editExperience={editExperience}
-                    setEditExperience={setEditExperience}
-                    showExperience={showExperience}
-                    value={value}
-                    setValue={setValue}
-                  />
-                );
-              })}
-
-              <Button
-                name="Add Experience"
-                addExperience={addExperience}
-                setAddExperience={setAddExperience}
-              />
-            </>
-          )
-        ) : null}
-      </div>
-      {/* <div className="educations-wrapper">
-        <div className="educations-header">
-          <div className="educations-title">
-            <img className="educations-icon" src={educationsIcon} alt="Icon" />
-            <h2>Educations</h2>
-          </div>
-          
-        </div>
-        {showEducations ? (
-          editEducation ? (
-            value.educations.map((education, i) => {
-              return (
-                <React.Fragment key={i}>
-                  <EditEducation
-                    value={value}
-                    id={i}
-                    setValue={setValue}
-                    addEducation={addEducation}
-                    setAddEducation={setAddEducation}
-                  />
-                </React.Fragment>
-              );
-            })
-          ) : addEducation ? (
-            <EducationForm
-              value={value}
-              setValue={setValue}
-              addEducation={addEducation}
-              setAddEducation={setAddEducation}
-            />
-          ) : (
-            <>
-              {value.educations.map((education, i) => {
-                return (
-                  <React.Fragment key={i}>
-                    <Educations education={education} />
-                  </React.Fragment>
-                );
-              })}
-              <Educations
-                value={value}
-                setValue={setValue}
-                addEducation={addEducation}
-                setAddEducation={setAddEducation}
-                editEducation={editEducation}
-                setEditEducation={setEditEducation}
-              />
-              <Button
-                name="Add Education"
-                addEducation={addEducation}
-                setAddEducation={setAddEducation}
-              />
-            </>
-          )
-        ) : null}
-        {showEducations ? (
-          editEducation ? (
-            <EditEducation />
-          ) : value.educations.length === 0 && !addEducation ? (
-            <Button
-              name="Add Education"
-              showEducations={showEducations}
-              addEducation={addEducation}
-              setAddEducation={setAddEducation}
-            />
-          ) : value.educations.length > 0 && !addEducation ? (
-            <Educations
-              value={value}
-              setValue={setValue}
-              showEducations={showEducations}
-              addEducation={addEducation}
-              setAddEducation={setAddEducation}
-              editEducation={editEducation}
-              setEditEducation={setEditEducation}
-            />
-          ) : addEducation ? (
-            <EducationForm
-              value={value}
-              setValue={setValue}
-              showEducations={showEducations}
-              addEducation={addEducation}
-              setAddEducation={setAddEducation}
-            />
-          ) : null
-        ) : null}
-      </div> */}
-      {/* <div className="experience-wrapper">
-        <div className="experience-header">
-          <div className="experience-title">
-            <img className="experience-icon" src={experienceIcon} alt="Icon" />
-            <h2>Experience</h2>
-          </div>
-          {revealExperience ? (
-            <img
-              className="reveal-icon"
-              src={angleUp}
-              alt="icon"
-              onClick={handleRevealExperience}
-            />
-          ) : (
-            <img
-              className="reveal-icon"
-              src={angleDown}
-              alt="icon"
-              onClick={handleRevealExperience}
-            />
-          )}
-        </div>
-        {revealExperience ? (
-          <ExperienceForm value={value} setValue={setValue} />
-        ) : null}
-      </div> */}
     </div>
   );
 }
