@@ -2,4 +2,5 @@
 
 Live site: [resume builder](https://jideotetic.github.io/resume-builder/)
 
-Built wit: React and SCSS
+Built with: React and SCSS
+Hosted with: Github pages
