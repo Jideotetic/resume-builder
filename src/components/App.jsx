@@ -66,7 +66,7 @@ export default function App() {
         id: 0,
         company: 'Accion Microfinance Bank',
         position: 'Customer Experience Officer',
-        companyStartDate: `2022-${getMonthName(7)}`,
+        companyStartDate: `2022-${getMonthName(7)}-11`,
         companyEndDate: `${!companyTillDateActive ? 'Till Date' : ''}`,
         companyTillDate: !companyTillDateActive,
         companyLocation: 'Lagos, Nigeria',
@@ -79,9 +79,9 @@ export default function App() {
         id: 0,
         school: 'Usmanu DanFodiyo University',
         degree: 'BSc. in Biochemistry',
-        schoolStartDate: `2013-${getMonthName(2)}`,
+        schoolStartDate: `2013-${getMonthName(2)}-01`,
         schoolEndDate: `${
-          schoolTillDateActive ? 'Till Date' : `2017-${getMonthName(11)}`
+          schoolTillDateActive ? 'Till Date' : `2017-${getMonthName(11)}-30`
         }`,
         schoolTillDate: schoolTillDateActive,
         schoolLocation: 'Sokoto, Nigeria',

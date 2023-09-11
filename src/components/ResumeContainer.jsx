@@ -9,8 +9,17 @@ export default function ResumeContainer({ value, setValue }) {
             <p>{experience.company}</p>
           </strong>
           <p>
-            {experience.companyStartDate.split('-').reverse().join(', ')} -{' '}
-            {experience.companyEndDate.split('-').reverse().join(', ')}
+            {experience.companyStartDate
+              .split('-')
+              .splice(0, 2)
+              .reverse()
+              .join(', ')}{' '}
+            -{' '}
+            {experience.companyEndDate
+              .split('-')
+              .splice(0, 2)
+              .reverse()
+              .join(', ')}
           </p>
         </div>
         <p>{experience.position}</p>
@@ -27,8 +36,17 @@ export default function ResumeContainer({ value, setValue }) {
             <p>{education.school}</p>
           </strong>
           <p>
-            {education.schoolStartDate.split('-').reverse().join(', ')} -{' '}
-            {education.schoolEndDate.split('-').reverse().join(', ')}
+            {education.schoolStartDate
+              .split('-')
+              .splice(0, 2)
+              .reverse()
+              .join(', ')}{' '}
+            -{' '}
+            {education.schoolEndDate
+              .split('-')
+              .splice(0, 2)
+              .reverse()
+              .join(', ')}
           </p>
         </div>
         <p>{education.degree}</p>

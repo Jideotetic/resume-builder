@@ -89,13 +89,15 @@ export default function Button({
             position: value.position,
             companyStartDate: `${
               value.companyStartDate.split('-')[0]
-            }-${getMonthName(value.companyStartDate.split('-')[1])}`,
+            }-${getMonthName(value.companyStartDate.split('-')[1])}-${
+              value.companyStartDate.split('-')[2]
+            }`,
             companyEndDate: `${
               companyTillDateActive
                 ? 'Till Date'
                 : `${value.companyEndDate.split('-')[0]}-${getMonthName(
                     value.companyEndDate.split('-')[1]
-                  )}`
+                  )}-${value.companyEndDate.split('-')[2]}`
             }`,
             companyTillDate: companyTillDateActive,
             companyLocation: value.companyLocation,
@@ -154,7 +156,9 @@ export default function Button({
           value.experience[id].companyStartDate.split('-')[0]
         }-${getMonthNumber(value.experience[id].companyStartDate.split('-')[1])
           .toString()
-          .padStart(2, '0')}`,
+          .padStart(2, '0')}-${
+          value.experience[id].companyStartDate.split('-')[2]
+        }`,
         companyEndDate: `${
           value.experience[id].companyTillDate
             ? ''
@@ -164,7 +168,9 @@ export default function Button({
                 value.experience[id].companyEndDate.split('-')[1]
               )
                 .toString()
-                .padStart(2, '0')}`
+                .padStart(2, '0')}-${
+                value.experience[id].companyStartDate.split('-')[2]
+              }`
         }`,
 
         companyTillDate: value.experience[id].companyTillDate,
@@ -186,13 +192,15 @@ export default function Button({
             position: value.position,
             companyStartDate: `${
               value.companyStartDate.split('-')[0]
-            }-${getMonthName(value.companyStartDate.split('-')[1])}`,
+            }-${getMonthName(value.companyStartDate.split('-')[1])}-${
+              value.companyStartDate.split('-')[2]
+            }`,
             companyEndDate: `${
               companyTillDateActive
                 ? 'Till Date'
                 : `${value.companyEndDate.split('-')[0]}-${getMonthName(
                     value.companyEndDate.split('-')[1]
-                  )}`
+                  )}-${value.companyEndDate.split('-')[2]}`
             }`,
             companyTillDate: companyTillDateActive,
             companyLocation: value.companyLocation,
@@ -259,13 +267,15 @@ export default function Button({
             degree: value.degree,
             schoolStartDate: `${
               value.schoolStartDate.split('-')[0]
-            }-${getMonthName(value.schoolStartDate.split('-')[1])}`,
+            }-${getMonthName(value.schoolStartDate.split('-')[1])}-${
+              value.schoolStartDate.split('-')[2]
+            }`,
             schoolEndDate: `${
               schoolTillDateActive
                 ? 'Till Date'
                 : `${value.schoolEndDate.split('-')[0]}-${getMonthName(
                     value.schoolEndDate.split('-')[1]
-                  )}`
+                  )}-${value.schoolEndDate.split('-')[2]}`
             }`,
             schoolTillDate: schoolTillDateActive,
             schoolLocation: value.schoolLocation,
@@ -320,7 +330,9 @@ export default function Button({
           value.educations[id].schoolStartDate.split('-')[0]
         }-${getMonthNumber(value.educations[id].schoolStartDate.split('-')[1])
           .toString()
-          .padStart(2, '0')}`,
+          .padStart(2, '0')}-${
+          value.educations[id].schoolStartDate.split('-')[2]
+        }`,
         schoolEndDate: `${
           value.educations[id].schoolTillDate
             ? ''
@@ -330,7 +342,9 @@ export default function Button({
                 value.educations[id].schoolEndDate.split('-')[1]
               )
                 .toString()
-                .padStart(2, '0')}`
+                .padStart(2, '0')}-${
+                value.educations[id].schoolEndDate.split('-')[2]
+              }`
         }`,
 
         schoolTillDate: value.educations[id].schoolTillDate,
@@ -351,13 +365,15 @@ export default function Button({
             degree: value.degree,
             schoolStartDate: `${
               value.schoolStartDate.split('-')[0]
-            }-${getMonthName(value.schoolStartDate.split('-')[1])}`,
+            }-${getMonthName(value.schoolStartDate.split('-')[1])}-${
+              value.schoolStartDate.split('-')[2]
+            }`,
             schoolEndDate: `${
               schoolTillDateActive
                 ? 'Till Date'
                 : `${value.schoolEndDate.split('-')[0]}-${getMonthName(
                     value.schoolEndDate.split('-')[1]
-                  )}`
+                  )}-${value.schoolEndDate.split('-')[2]}`
             }`,
             schoolTillDate: schoolTillDateActive,
             schoolLocation: value.schoolLocation,

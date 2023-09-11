@@ -82,7 +82,7 @@ export default function EditEducation({
       <label htmlFor="school-start-date">Start Date</label>
       <br />
       <input
-        type="month"
+        type="date"
         name="school-start-date"
         id="school-start-date"
         value={value.schoolStartDate}
@@ -92,7 +92,7 @@ export default function EditEducation({
       <label htmlFor="school-end-date">End Date</label>
       <br />
       <input
-        type="month"
+        type="date"
         name="school-end-date"
         id="school-end-date"
         value={value.schoolEndDate}

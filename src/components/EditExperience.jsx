@@ -91,7 +91,7 @@ export default function ExperienceForm({
         <label htmlFor="company-start-date">Start Date</label>
         <br />
         <input
-          type="month"
+          type="date"
           name="company-start-date"
           id="company-start-date"
           value={value.companyStartDate}
@@ -101,7 +101,7 @@ export default function ExperienceForm({
         <label htmlFor="company-end-date">End Date</label>
         <br />
         <input
-          type="month"
+          type="date"
           name="company-end-date"
           id="company-end-date"
           value={value.companyEndDate}
