@@ -117,8 +117,8 @@ export default function App() {
         {createResume ? (
           width >= breakPoint ? (
             <>
-              <div className="button-container">
-                <Button name="Go Back" status={status} setStatus={setStatus} />
+              <div className="large-button-container">
+                <Button name="Back" status={status} setStatus={setStatus} />
                 <Button name="Download" />
               </div>
               <ResumeForm
@@ -182,20 +182,16 @@ export default function App() {
                 setSelectedEducationId={setSelectedEducationId}
               />
               <div className="button-container">
-                <Button name="Go Back" status={status} setStatus={setStatus} />
-                <Button
-                  name="Preview Resume"
-                  status={status}
-                  setStatus={setStatus}
-                />
+                <Button name="Back" status={status} setStatus={setStatus} />
+                <Button name="Preview" status={status} setStatus={setStatus} />
               </div>
             </>
           )
         ) : previewResume ? (
           width >= breakPoint ? (
             <>
-              <div className="button-container">
-                <Button name="Go Back" status={status} setStatus={setStatus} />
+              <div className="large-button-container">
+                <Button name="Back" status={status} setStatus={setStatus} />
                 <Button name="Download" />
               </div>
               <ResumeForm
@@ -232,7 +228,7 @@ export default function App() {
             <>
               <ResumeContainer value={value} setValue={setValue} />
               <div className="button-container">
-                <Button name="Go Back" status={status} setStatus={setStatus} />
+                <Button name="Back" status={status} setStatus={setStatus} />
                 <Button name="Download" />
               </div>
             </>

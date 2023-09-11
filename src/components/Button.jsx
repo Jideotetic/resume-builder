@@ -36,11 +36,11 @@ export default function Button({
   function handleButtonClick() {
     if (status === '' && name === 'Create Resume') {
       setStatus('creating');
-    } else if (status === 'creating' && name === 'Go Back') {
+    } else if (status === 'creating' && name === 'Back') {
       setStatus('');
-    } else if (status === 'previewing' && name === 'Go Back') {
+    } else if (status === 'previewing' && name === 'Back') {
       setStatus('creating');
-    } else if (status === 'creating' && name === 'Preview Resume') {
+    } else if (status === 'creating' && name === 'Preview') {
       setStatus('previewing');
     } else if (showPersonalDetails && !editPersonalDetails && name === 'Edit') {
       setEditPersonalDetails(!editPersonalDetails);
@@ -407,6 +407,8 @@ export default function Button({
         ...value,
         educations: value.educations.filter((e) => e.id !== id),
       });
+    } else if (name === 'Download') {
+      alert('Coming Soon...');
     }
   }
 

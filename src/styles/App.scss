@@ -5,16 +5,20 @@
   justify-content: space-between;
 }
 
-.button-container {
+@mixin button-flex-container() {
   display: flex;
   justify-content: space-around;
   gap: 10px;
 }
 
+.button-container {
+  @include button-flex-container();
+}
+
 @media screen and (min-width: 768px) {
-  .button-container {
+  .large-button-container {
+    @include button-flex-container();
     flex-direction: column;
     justify-content: unset;
-    gap: 10px;
   }
 }

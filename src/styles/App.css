@@ -12,9 +12,11 @@
 }
 
 @media screen and (min-width: 768px) {
-  .button-container {
+  .large-button-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
     flex-direction: column;
     justify-content: unset;
-    gap: 10px;
   }
 }/*# sourceMappingURL=App.css.map */
