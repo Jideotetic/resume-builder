@@ -6,6 +6,8 @@ export default function ExperienceForm({
   selectedExperienceId,
   editExperience,
   setEditExperience,
+  companyTillDateActive,
+  setCompanyTillDateActive,
 }) {
   function handleCompanyChange(e) {
     setValue({
@@ -35,6 +37,10 @@ export default function ExperienceForm({
     });
   }
 
+  function handleCompanyTillDateActiveChange(e) {
+    setCompanyTillDateActive(e.target.checked);
+  }
+
   function handleCompanyLocationChange(e) {
     setValue({
       ...value,
@@ -53,7 +59,7 @@ export default function ExperienceForm({
     !value.company ||
     !value.position ||
     !value.companyStartDate ||
-    !value.companyEndDate ||
+    (!companyTillDateActive && !value.companyEndDate) ||
     !value.companyLocation ||
     !value.jobDescription;
 
@@ -82,38 +88,47 @@ export default function ExperienceForm({
           onChange={handlePositionChange}
         />
         <br />
-        <label htmlFor="start-date">Start Date</label>
+        <label htmlFor="company-start-date">Start Date</label>
         <br />
         <input
           type="month"
-          name="start-date"
-          id="start-date"
+          name="company-start-date"
+          id="company-start-date"
           value={value.companyStartDate}
           onChange={handleCompanyStartDateChange}
         />
         <br />
-        <label htmlFor="end-date">End Date</label>
+        <label htmlFor="company-end-date">End Date</label>
         <br />
         <input
           type="month"
-          name="end-date"
-          id="end-date"
+          name="company-end-date"
+          id="company-end-date"
           value={value.companyEndDate}
           onChange={handleCompanyEndDateChange}
+          disabled={companyTillDateActive}
         />
         <br />
-        <label htmlFor="location">Location</label>
+        <input
+          type="checkbox"
+          name="company-till-date"
+          id="company-till-date"
+          checked={companyTillDateActive}
+          onChange={handleCompanyTillDateActiveChange}
+        />
+        <label htmlFor="company-till-date">Still work here</label>
+        <br />
+        <label htmlFor="company-location">Location</label>
         <br />
         <input
           type="text"
-          name="location"
-          id="location"
+          name="company-location"
+          id="company-location"
           value={value.companyLocation}
           onChange={handleCompanyLocationChange}
         />
         <br />
         <label htmlFor="description">Description</label>
-
         <br />
         <textarea
           name="description"
@@ -133,6 +148,8 @@ export default function ExperienceForm({
             editExperience={editExperience}
             setEditExperience={setEditExperience}
             selectedExperienceId={selectedExperienceId}
+            companyTillDateActive={companyTillDateActive}
+            setCompanyTillDateActive={setCompanyTillDateActive}
           />
           <Button
             name="Cancel"
@@ -140,12 +157,16 @@ export default function ExperienceForm({
             setValue={setValue}
             editExperience={editExperience}
             setEditExperience={setEditExperience}
+            setCompanyTillDateActive={setCompanyTillDateActive}
+            companyTillDateActive={companyTillDateActive}
           />
           <Button
             name="Clear"
             value={value}
             setValue={setValue}
             editExperience={editExperience}
+            setCompanyTillDateActive={setCompanyTillDateActive}
+            companyTillDateActive={companyTillDateActive}
           />
         </div>
       </fieldset>

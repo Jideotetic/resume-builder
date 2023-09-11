@@ -68,6 +68,18 @@ fieldset {
     margin-bottom: 5px;
   }
 
+  #company-end-date:disabled,
+  #school-end-date:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  #company-till-date,
+  #school-till-date {
+    width: unset;
+    margin-right: 5px;
+  }
+
   input:focus {
     outline-color: variables.$colored-bg;
   }

@@ -1,16 +1,18 @@
 import Button from './Button';
-import '../styles/Experiences.css';
+import '../styles/Experience.css';
 
 export default function Experience({
   id,
   experience,
-  selectedExperienceId,
-  setSelectedExperienceId,
   editExperience,
   setEditExperience,
   showExperience,
   value,
   setValue,
+  companyTillDateActive,
+  setCompanyTillDateActive,
+  setSelectedExperienceId,
+  selectedExperienceId,
 }) {
   return (
     <ul className="experience-list">
@@ -25,8 +27,9 @@ export default function Experience({
             editExperience={editExperience}
             setEditExperience={setEditExperience}
             showExperience={showExperience}
+            companyTillDateActive={companyTillDateActive}
+            setCompanyTillDateActive={setCompanyTillDateActive}
             setSelectedExperienceId={setSelectedExperienceId}
-            selectedExperienceId={selectedExperienceId}
           />
           <Button
             name="Delete"
@@ -37,6 +40,8 @@ export default function Experience({
             editExperience={editExperience}
             setEditExperience={setEditExperience}
             showExperience={showExperience}
+            companyTillDateActive={companyTillDateActive}
+            setCompanyTillDateActive={setCompanyTillDateActive}
             setSelectedExperienceId={setSelectedExperienceId}
             selectedExperienceId={selectedExperienceId}
           />

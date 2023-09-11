@@ -23,4 +23,10 @@
 .resume-container h4,
 .resume-container hr {
   margin-bottom: 8px;
+}
+
+.company-name,
+.school-name {
+  display: flex;
+  justify-content: space-between;
 }/*# sourceMappingURL=ResumeContainer.css.map */

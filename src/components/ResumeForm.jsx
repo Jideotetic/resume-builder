@@ -22,22 +22,29 @@ export default function ResumeForm({
   setShowPersonalDetails,
   editPersonalDetails,
   setEditPersonalDetails,
-  showEducations,
-  setShowEducations,
-  addEducation,
-  setAddEducation,
-  editEducation,
-  setEditEducation,
+
   showExperience,
   setShowExperience,
   addExperience,
   setAddExperience,
   editExperience,
   setEditExperience,
-}) {
-  const [selectedEducationId, setSelectedEducationId] = useState(0);
-  const [selectedExperienceId, setSelectedExperienceId] = useState(0);
+  companyTillDateActive,
+  setCompanyTillDateActive,
+  selectedExperienceId,
+  setSelectedExperienceId,
 
+  showEducations,
+  setShowEducations,
+  addEducation,
+  setAddEducation,
+  editEducation,
+  setEditEducation,
+  schoolTillDateActive,
+  setSchoolTillDateActive,
+  selectedEducationId,
+  setSelectedEducationId,
+}) {
   function handleShowPersonalDetails() {
     setShowPersonalDetails(!showPersonalDetails);
   }
@@ -124,6 +131,8 @@ export default function ResumeForm({
               setValue={setValue}
               addExperience={addExperience}
               setAddExperience={setAddExperience}
+              companyTillDateActive={companyTillDateActive}
+              setCompanyTillDateActive={setCompanyTillDateActive}
             />
           ) : editExperience ? (
             <EditExperience
@@ -132,6 +141,8 @@ export default function ResumeForm({
               editExperience={editExperience}
               setEditExperience={setEditExperience}
               selectedExperienceId={selectedExperienceId}
+              companyTillDateActive={companyTillDateActive}
+              setCompanyTillDateActive={setCompanyTillDateActive}
             />
           ) : (
             <>
@@ -141,13 +152,15 @@ export default function ResumeForm({
                     key={experience.id}
                     id={experience.id}
                     experience={experience}
-                    selectedExperienceId={selectedExperienceId}
-                    setSelectedExperienceId={setSelectedExperienceId}
                     editExperience={editExperience}
                     setEditExperience={setEditExperience}
                     showExperience={showExperience}
                     value={value}
                     setValue={setValue}
+                    companyTillDateActive={companyTillDateActive}
+                    setCompanyTillDateActive={setCompanyTillDateActive}
+                    setSelectedExperienceId={setSelectedExperienceId}
+                    selectedExperienceId={selectedExperienceId}
                   />
                 );
               })}
@@ -190,6 +203,8 @@ export default function ResumeForm({
               setValue={setValue}
               addEducation={addEducation}
               setAddEducation={setAddEducation}
+              schoolTillDateActive={schoolTillDateActive}
+              setSchoolTillDateActive={setSchoolTillDateActive}
             />
           ) : editEducation ? (
             <EditEducation
@@ -198,6 +213,8 @@ export default function ResumeForm({
               editEducation={editEducation}
               setEditEducation={setEditEducation}
               selectedEducationId={selectedEducationId}
+              // schoolTillDateActive={schoolTillDateActive}
+              // setSchoolTillDateActive={setSchoolTillDateActive}
             />
           ) : (
             <>

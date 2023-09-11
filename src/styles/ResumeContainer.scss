@@ -29,3 +29,9 @@
     margin-bottom: 8px;
   }
 }
+
+.company-name,
+.school-name {
+  display: flex;
+  justify-content: space-between;
+}

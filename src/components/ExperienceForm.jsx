@@ -5,6 +5,8 @@ export default function ExperienceForm({
   setValue,
   addExperience,
   setAddExperience,
+  companyTillDateActive,
+  setCompanyTillDateActive,
 }) {
   function handleCompanyChange(e) {
     setValue({
@@ -34,6 +36,10 @@ export default function ExperienceForm({
     });
   }
 
+  function handleCompanyTillDateActiveChange(e) {
+    setCompanyTillDateActive(e.target.checked);
+  }
+
   function handleCompanyLocationChange(e) {
     setValue({
       ...value,
@@ -52,103 +58,117 @@ export default function ExperienceForm({
     !value.company ||
     !value.position ||
     !value.companyStartDate ||
-    !value.companyEndDate ||
+    (!companyTillDateActive && !value.companyEndDate) ||
     !value.companyLocation ||
     !value.jobDescription;
 
   return (
-    <>
-      <fieldset>
-        <label htmlFor="company-name">Company Name</label>
-        <br />
-        <input
-          type="text"
-          name="company-name"
-          id="company-name"
-          placeholder="Enter Company Name"
-          value={value.company}
-          onChange={handleCompanyChange}
-        />
-        <br />
-        <label htmlFor="position-title">Position Title</label>
-        <br />
-        <input
-          type="text"
-          name="position-title"
-          id="position-title"
-          placeholder="Enter Position Title"
-          value={value.position}
-          onChange={handlePositionChange}
-        />
-        <br />
-        <label htmlFor="start-date">Start Date</label>
-        <br />
-        <input
-          type="month"
-          name="start-date"
-          id="start-date"
-          value={value.companyStartDate}
-          onChange={handleCompanyStartDateChange}
-        />
-        <br />
-        <label htmlFor="end-date">End Date</label>
-        <br />
-        <input
-          type="month"
-          name="end-date"
-          id="end-date"
-          value={value.companyEndDate}
-          onChange={handleCompanyEndDateChange}
-        />
-        <br />
-        <label htmlFor="location">Location</label>
-        <br />
-        <input
-          type="text"
-          name="location"
-          id="location"
-          value={value.companyLocation}
-          onChange={handleCompanyLocationChange}
-          placeholder="Enter Your Company Location"
-        />
-        <br />
-        <label htmlFor="description">Description</label>
+    <fieldset>
+      <label htmlFor="company-name">Company Name</label>
+      <br />
+      <input
+        type="text"
+        name="company-name"
+        id="company-name"
+        placeholder="Enter Company Name"
+        value={value.company}
+        onChange={handleCompanyChange}
+      />
+      <br />
+      <label htmlFor="position-title">Position Title</label>
+      <br />
+      <input
+        type="text"
+        name="position-title"
+        id="position-title"
+        placeholder="Enter Position Title"
+        value={value.position}
+        onChange={handlePositionChange}
+      />
+      <br />
+      <label htmlFor="company-start-date">Start Date</label>
+      <br />
+      <input
+        type="month"
+        name="company-start-date"
+        id="company-start-date"
+        value={value.companyStartDate}
+        onChange={handleCompanyStartDateChange}
+      />
+      <br />
+      <label htmlFor="company-end-date">End Date</label>
+      <br />
+      <input
+        type="month"
+        name="company-end-date"
+        id="company-end-date"
+        value={value.companyEndDate}
+        onChange={handleCompanyEndDateChange}
+        disabled={companyTillDateActive}
+      />
+      <br />
+      <input
+        type="checkbox"
+        name="company-till-date"
+        id="company-till-date"
+        checked={companyTillDateActive}
+        onChange={handleCompanyTillDateActiveChange}
+      />
+      <label htmlFor="company-till-date">Still work here</label>
+      <br />
+      <label htmlFor="company-location">Location</label>
+      <br />
+      <input
+        type="text"
+        name="company-location"
+        id="company-location"
+        value={value.companyLocation}
+        onChange={handleCompanyLocationChange}
+        placeholder="Enter Your Company Location"
+      />
+      <br />
+      <label htmlFor="description">Description</label>
 
-        <br />
-        <textarea
-          name="description"
-          id="description"
-          rows="5"
-          value={value.jobDescription}
-          onChange={handleJobDescriptionChange}
-          placeholder="Enter Your Job Description"></textarea>
-        <br />
-        <br />
-        <div className="button-container">
-          <Button
-            name="Save"
-            isActive={isActive}
-            value={value}
-            setValue={setValue}
-            addExperience={addExperience}
-            setAddExperience={setAddExperience}
-          />
-          <Button
-            name="Cancel"
-            value={value}
-            setValue={setValue}
-            addExperience={addExperience}
-            setAddExperience={setAddExperience}
-          />
-          <Button
-            name="Clear"
-            value={value}
-            setValue={setValue}
-            addExperience={addExperience}
-            setAddExperience={setAddExperience}
-          />
-        </div>
-      </fieldset>
-    </>
+      <br />
+      <textarea
+        name="description"
+        id="description"
+        rows="5"
+        value={value.jobDescription}
+        onChange={handleJobDescriptionChange}
+        placeholder="Enter Your Job Description"></textarea>
+      <br />
+      <br />
+      <div className="button-container">
+        <Button
+          name="Save"
+          isActive={isActive}
+          value={value}
+          setValue={setValue}
+          addExperience={addExperience}
+          setAddExperience={setAddExperience}
+          companyTillDateActive={companyTillDateActive}
+          setCompanyTillDateActive={setCompanyTillDateActive}
+        />
+        <Button
+          name="Cancel"
+          value={value}
+          setValue={setValue}
+          addExperience={addExperience}
+          setAddExperience={setAddExperience}
+          companyTillDateActive={companyTillDateActive}
+          setCompanyTillDateActive={setCompanyTillDateActive}
+        />
+        <Button
+          name="Clear"
+          value={value}
+          setValue={setValue}
+          addExperience={addExperience}
+          setAddExperience={setAddExperience}
+          companyTillDateActive={companyTillDateActive}
+          setCompanyTillDateActive={setCompanyTillDateActive}
+        />
+      </div>
+    </fieldset>
   );
 }

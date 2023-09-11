@@ -102,6 +102,16 @@ fieldset textarea {
   display: inline-block;
   margin-bottom: 5px;
 }
+fieldset #company-end-date:disabled,
+fieldset #school-end-date:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+fieldset #company-till-date,
+fieldset #school-till-date {
+  width: unset;
+  margin-right: 5px;
+}
 fieldset input:focus {
   outline-color: rgb(14, 55, 78);
 }/*# sourceMappingURL=ResumeForm.css.map */

@@ -1,3 +1,4 @@
+import { getMonthName, getMonthNumber } from '../customHooks';
 import '../styles/Button.css';
 
 export default function Button({
@@ -27,6 +28,10 @@ export default function Button({
   setEditExperience,
   setSelectedExperienceId,
   selectedExperienceId,
+  schoolTillDateActive,
+  setSchoolTillDateActive,
+  companyTillDateActive,
+  setCompanyTillDateActive,
 }) {
   function handleButtonClick() {
     if (status === '' && name === 'Create Resume') {
@@ -71,107 +76,6 @@ export default function Button({
         homeAddress: '',
         careerSummary: '',
       });
-    } else if (!addEducation && name === 'Add Education') {
-      setAddEducation(!addEducation);
-    } else if (addEducation && name === 'Save') {
-      setValue({
-        ...value,
-        educations: [
-          ...value.educations,
-          {
-            id: value.educations.length,
-            school: value.school,
-            degree: value.degree,
-            schoolStartDate: value.schoolStartDate,
-            schoolEndDate: value.schoolEndDate,
-            schoolLocation: value.schoolLocation,
-          },
-        ],
-        school: '',
-        degree: '',
-        schoolStartDate: '',
-        schoolEndDate: '',
-        schoolLocation: '',
-      });
-      setAddEducation(!addEducation);
-    } else if (addEducation && name === 'Cancel') {
-      setValue({
-        ...value,
-        school: '',
-        degree: '',
-        schoolStartDate: '',
-        schoolEndDate: '',
-        schoolLocation: '',
-      });
-      setAddEducation(!addEducation);
-    } else if (addEducation && name === 'Clear') {
-      setValue({
-        ...value,
-        school: '',
-        degree: '',
-        schoolStartDate: '',
-        schoolEndDate: '',
-        schoolLocation: '',
-      });
-    } else if (showEducations && !editEducation && name === 'Edit') {
-      setSelectedEducationId(id);
-      setValue({
-        ...value,
-        school: value.educations[selectedEducationId].school,
-        degree: value.educations[selectedEducationId].degree,
-        schoolStartDate: value.educations[selectedEducationId].schoolStartDate,
-        schoolEndDate: value.educations[selectedEducationId].schoolEndDate,
-        schoolLocation: value.educations[selectedEducationId].schoolLocation,
-      });
-      setEditEducation(!editEducation);
-    } else if (editEducation && name === 'Save') {
-      setValue({
-        ...value,
-        educations: [
-          {
-            ...value.educations[selectedEducationId],
-            id: selectedEducationId,
-            school: value.school,
-            degree: value.degree,
-            schoolStartDate: value.schoolStartDate,
-            schoolEndDate: value.schoolEndDate,
-            schoolLocation: value.schoolLocation,
-          },
-        ],
-        school: '',
-        degree: '',
-        schoolStartDate: '',
-        schoolEndDate: '',
-        schoolLocation: '',
-      });
-      setEditEducation(!editEducation);
-    } else if (editEducation && name === 'Cancel') {
-      setValue({
-        ...value,
-        school: '',
-        degree: '',
-        schoolStartDate: '',
-        schoolEndDate: '',
-        schoolLocation: '',
-      });
-      setEditEducation(!editEducation);
-    } else if (editEducation && name === 'Clear') {
-      setValue({
-        ...value,
-        school: '',
-        degree: '',
-        schoolStartDate: '',
-        schoolEndDate: '',
-        schoolLocation: '',
-      });
-    } else if (!editEducation && showEducations && name === 'Delete') {
-      setSelectedEducationId(id);
-      setValue({
-        ...value,
-        educations: value.educations.filter((e) => {
-          e.id !== education.selectedEducationId;
-        }),
-      });
     } else if (!addExperience && name === 'Add Experience') {
       setAddExperience(!addExperience);
     } else if (addExperience && name === 'Save') {
@@ -183,8 +87,17 @@ export default function Button({
             id: value.experience.length,
             company: value.company,
             position: value.position,
-            companyStartDate: value.companyStartDate,
-            companyEndDate: value.companyEndDate,
+            companyStartDate: `${
+              value.companyStartDate.split('-')[0]
+            }-${getMonthName(value.companyStartDate.split('-')[1])}`,
+            companyEndDate: `${
+              companyTillDateActive
+                ? 'Till Date'
+                : `${value.companyEndDate.split('-')[0]}-${getMonthName(
+                    value.companyEndDate.split('-')[1]
+                  )}`
+            }`,
+            companyTillDate: companyTillDateActive,
             companyLocation: value.companyLocation,
             jobDescription: value.jobDescription,
           },
@@ -193,6 +106,9 @@ export default function Button({
         position: '',
         companyStartDate: '',
         companyEndDate: '',
+        companyTillDate: companyTillDateActive
+          ? setCompanyTillDateActive(!companyTillDateActive)
+          : null,
         companyLocation: '',
         jobDescription: '',
       });
@@ -204,9 +120,13 @@ export default function Button({
         position: '',
         companyStartDate: '',
         companyEndDate: '',
+        companyTillDate: companyTillDateActive,
         companyLocation: '',
         jobDescription: '',
       });
+      if (companyTillDateActive) {
+        setCompanyTillDateActive(!companyTillDateActive);
+      }
       setAddExperience(!addExperience);
     } else if (addExperience && name === 'Clear') {
       setValue({
@@ -215,20 +135,45 @@ export default function Button({
         position: '',
         companyStartDate: '',
         companyEndDate: '',
+        companyTillDate: companyTillDateActive,
         companyLocation: '',
         jobDescription: '',
       });
+      if (!companyTillDateActive) {
+        return;
+      } else {
+        setCompanyTillDateActive(!companyTillDateActive);
+      }
     } else if (showExperience && !editExperience && name === 'Edit') {
       setSelectedExperienceId(id);
       setValue({
         ...value,
-        company: value.experience[selectedExperienceId].company,
-        position: value.experience[selectedExperienceId].position,
-        companyStartDate:
-          value.experience[selectedExperienceId].companyStartDate,
-        companyEndDate: value.experience[selectedExperienceId].companyEndDate,
-        companyLocation: value.experience[selectedExperienceId].companyLocation,
+        company: value.experience[id].company,
+        position: value.experience[id].position,
+        companyStartDate: `${
+          value.experience[id].companyStartDate.split('-')[0]
+        }-${getMonthNumber(value.experience[id].companyStartDate.split('-')[1])
+          .toString()
+          .padStart(2, '0')}`,
+        companyEndDate: `${
+          value.experience[id].companyTillDate
+            ? ''
+            : `${
+                value.experience[id].companyEndDate.split('-')[0]
+              }-${getMonthNumber(
+                value.experience[id].companyEndDate.split('-')[1]
+              )
+                .toString()
+                .padStart(2, '0')}`
+        }`,
+
+        companyTillDate: value.experience[id].companyTillDate,
+        companyLocation: value.experience[id].companyLocation,
+        jobDescription: value.experience[id].jobDescription,
       });
+      if (value.experience[id].companyTillDate) {
+        setCompanyTillDateActive(!companyTillDateActive);
+      }
       setEditExperience(!editExperience);
     } else if (editExperience && name === 'Save') {
       setValue({
@@ -239,8 +184,17 @@ export default function Button({
             id: selectedExperienceId,
             company: value.company,
             position: value.position,
-            companyStartDate: value.companyStartDate,
-            companyEndDate: value.companyEndDate,
+            companyStartDate: `${
+              value.companyStartDate.split('-')[0]
+            }-${getMonthName(value.companyStartDate.split('-')[1])}`,
+            companyEndDate: `${
+              companyTillDateActive
+                ? 'Till Date'
+                : `${value.companyEndDate.split('-')[0]}-${getMonthName(
+                    value.companyEndDate.split('-')[1]
+                  )}`
+            }`,
+            companyTillDate: companyTillDateActive,
             companyLocation: value.companyLocation,
             jobDescription: value.jobDescription,
           },
@@ -249,6 +203,9 @@ export default function Button({
         position: '',
         companyStartDate: '',
         companyEndDate: '',
+        companyTillDate: companyTillDateActive
+          ? setCompanyTillDateActive(!companyTillDateActive)
+          : null,
         companyLocation: '',
         jobDescription: '',
       });
@@ -260,9 +217,13 @@ export default function Button({
         position: '',
         companyStartDate: '',
         companyEndDate: '',
+        companyTillDate: companyTillDateActive,
         companyLocation: '',
         jobDescription: '',
       });
+      if (companyTillDateActive) {
+        setCompanyTillDateActive(!companyTillDateActive);
+      }
       setEditExperience(!editExperience);
     } else if (editExperience && name === 'Clear') {
       setValue({
@@ -271,18 +232,153 @@ export default function Button({
         position: '',
         companyStartDate: '',
         companyEndDate: '',
+        companyTillDate: companyTillDateActive,
         companyLocation: '',
         jobDescription: '',
       });
+      if (!companyTillDateActive) {
+        return;
+      } else {
+        setCompanyTillDateActive(!companyTillDateActive);
+      }
     } else if (!editExperience && showExperience && name === 'Delete') {
-      setSelectedExperienceId(id);
       setValue({
         ...value,
-        experience: value.experience.filter((e) => {
-          e.id !== experience.selectedExperienceId;
-        }),
+        experience: value.experience.filter((e) => e.id !== id),
       });
     }
+    // else if (!addEducation && name === 'Add Education') {
+    //   setAddEducation(!addEducation);
+    // } else if (addEducation && name === 'Save') {
+    //   setValue({
+    //     ...value,
+    //     educations: [
+    //       ...value.educations,
+    //       {
+    //         id: value.educations.length,
+    //         school: value.school,
+    //         degree: value.degree,
+    //         schoolStartDate: `${
+    //           value.schoolStartDate.split('-')[0]
+    //         }-${getMonthName(value.schoolStartDate.split('-')[1])}`,
+    //         schoolEndDate: `${
+    //           schoolTillDateActive
+    //             ? 'Till Date'
+    //             : `${value.schoolEndDate.split('-')[0]}-${getMonthName(
+    //                 value.schoolEndDate.split('-')[1]
+    //               )}`
+    //         }`,
+    //         schoolTillDate: schoolTillDateActive,
+    //         schoolLocation: value.schoolLocation,
+    //       },
+    //     ],
+    //     school: '',
+    //     degree: '',
+    //     schoolStartDate: '',
+    //     schoolEndDate: '',
+    //     schoolTillDate: schoolTillDateActive,
+    //     schoolLocation: '',
+    //   });
+    //   setAddEducation(!addEducation);
+    // } else if (addEducation && name === 'Cancel') {
+    //   setValue({
+    //     ...value,
+    //     school: '',
+    //     degree: '',
+    //     schoolStartDate: '',
+    //     schoolEndDate: '',
+    //     schoolLocation: '',
+    //   });
+    //   if (schoolTillDateActive) {
+    //     setSchoolTillDateActive(!schoolTillDateActive);
+    //   }
+    //   setAddEducation(!addEducation);
+    // } else if (addEducation && name === 'Clear') {
+    //   setValue({
+    //     ...value,
+    //     school: '',
+    //     degree: '',
+    //     schoolStartDate: '',
+    //     schoolEndDate: '',
+    //     schoolLocation: '',
+    //   });
+    //   setSchoolTillDateActive(!schoolTillDateActive);
+    // } else if (showEducations && !editEducation && name === 'Edit') {
+    //   setSelectedEducationId(id);
+    //   setValue({
+    //     ...value,
+    //     school: value.educations[selectedEducationId].school,
+    //     degree: value.educations[selectedEducationId].degree,
+    //     schoolStartDate: `${
+    //       value.educations[selectedEducationId].schoolStartDate.split('-')[0]
+    //     }-${getMonthNumber(
+    //       value.educations[selectedEducationId].schoolStartDate.split('-')[1]
+    //     )
+    //       .toString()
+    //       .padStart(2, '0')}`,
+    //     schoolEndDate: `${
+    //       value.educations[selectedEducationId].schoolEndDate.split('-')[0]
+    //     }-${getMonthNumber(
+    //       value.educations[selectedEducationId].schoolEndDate.split('-')[1]
+    //     )
+    //       .toString()
+    //       .padStart(2, '0')}`,
+    //     schoolLocation: value.educations[selectedEducationId].schoolLocation,
+    //   });
+    //   setEditEducation(!editEducation);
+    // } else if (editEducation && name === 'Save') {
+    //   setValue({
+    //     ...value,
+    //     educations: [
+    //       {
+    //         ...value.educations[selectedEducationId],
+    //         id: selectedEducationId,
+    //         school: value.school,
+    //         degree: value.degree,
+    //         schoolStartDate: `${
+    //           value.schoolStartDate.split('-')[0]
+    //         }-${getMonthName(value.schoolStartDate.split('-')[1])}`,
+    //         schoolEndDate: `${value.schoolEndDate.split('-')[0]}-${getMonthName(
+    //           value.schoolEndDate.split('-')[1]
+    //         )}`,
+    //         schoolLocation: value.schoolLocation,
+    //       },
+    //     ],
+    //     school: '',
+    //     degree: '',
+    //     schoolStartDate: '',
+    //     schoolEndDate: '',
+    //     schoolLocation: '',
+    //   });
+    //   setEditEducation(!editEducation);
+    // } else if (editEducation && name === 'Cancel') {
+    //   setValue({
+    //     ...value,
+    //     school: '',
+    //     degree: '',
+    //     schoolStartDate: '',
+    //     schoolEndDate: '',
+    //     schoolLocation: '',
+    //   });
+    //   setEditEducation(!editEducation);
+    // } else if (editEducation && name === 'Clear') {
+    //   setValue({
+    //     ...value,
+    //     school: '',
+    //     degree: '',
+    //     schoolStartDate: '',
+    //     schoolEndDate: '',
+    //     schoolLocation: '',
+    //   });
+    // } else if (!editEducation && showEducations && name === 'Delete') {
+    //   setSelectedEducationId(id);
+    //   setValue({
+    //     ...value,
+    //     educations: value.educations.filter((e) => {
+    //       e.id !== education.selectedEducationId;
+    //     }),
+    //   });
+    // }
   }
 
   function splitName(name) {

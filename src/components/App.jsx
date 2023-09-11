@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { getMonthName } from '../customHooks';
 import Favicon from './Favicon';
 import Header from './Header';
 import Main from './Main';
@@ -11,14 +12,25 @@ import '../styles/App.css';
 export default function App() {
   const [status, setStatus] = useState('');
   const [width, setWidth] = useState(window.innerWidth);
+
+  // personal details section variables
   const [showPersonalDetails, setShowPersonalDetails] = useState(false);
   const [editPersonalDetails, setEditPersonalDetails] = useState(false);
-  const [showEducations, setShowEducations] = useState(false);
-  const [addEducation, setAddEducation] = useState(false);
-  const [editEducation, setEditEducation] = useState(false);
+
+  // experience section variables
   const [showExperience, setShowExperience] = useState(false);
   const [addExperience, setAddExperience] = useState(false);
   const [editExperience, setEditExperience] = useState(false);
+  const [companyTillDateActive, setCompanyTillDateActive] = useState(false);
+  const [selectedExperienceId, setSelectedExperienceId] = useState(0);
+
+  // educations section variables
+  const [showEducations, setShowEducations] = useState(false);
+  const [addEducation, setAddEducation] = useState(false);
+  const [editEducation, setEditEducation] = useState(false);
+  const [schoolTillDateActive, setSchoolTillDateActive] = useState(false);
+  const [selectedEducationId, setSelectedEducationId] = useState(0);
+
   const [value, setValue] = useState({
     name: 'Abdulbasit Yusuf',
     email: 'jideotetic@gmail.com',
@@ -34,6 +46,7 @@ export default function App() {
     position: '',
     companyStartDate: '',
     companyEndDate: '',
+    companyTillDate: companyTillDateActive,
     companyLocation: '',
     jobDescription: '',
     personalDetails: {
@@ -47,9 +60,12 @@ export default function App() {
       {
         id: 0,
         school: 'Usmanu DanFodiyo University',
-        degree: 'Bachelor',
-        schoolStartDate: '2013-02',
-        schoolEndDate: '2017-11',
+        degree: 'BSc. in Biochemistry',
+        schoolStartDate: `2013-${getMonthName(2)}`,
+        schoolEndDate: `${
+          schoolTillDateActive ? 'Till Date' : `2017-${getMonthName(11)}`
+        }`,
+        schoolTillDate: schoolTillDateActive,
         schoolLocation: 'Sokoto, Nigeria',
       },
     ],
@@ -58,14 +74,11 @@ export default function App() {
         id: 0,
         company: 'Accion Microfinance Bank',
         position: 'Customer Experience Officer',
-        companyStartDate: '2022-07',
-        companyEndDate: `${new Date().getFullYear()}-${(
-          new Date().getMonth() + 1
-        )
-          .toString()
-          .padStart(2, '0')}`,
+        companyStartDate: `2022-${getMonthName(7)}`,
+        companyEndDate: `${!companyTillDateActive ? 'Till Date' : ''}`,
+        companyTillDate: !companyTillDateActive,
         companyLocation: 'Lagos, Nigeria',
-        jobDescription: [],
+        jobDescription: 'Handle customer enquiry, request and complaints',
       },
     ],
   });
@@ -109,20 +122,28 @@ export default function App() {
                 setShowPersonalDetails={setShowPersonalDetails}
                 editPersonalDetails={editPersonalDetails}
                 setEditPersonalDetails={setEditPersonalDetails}
-                showEducations={showEducations}
-                setShowEducations={setShowEducations}
-                addEducation={addEducation}
-                setAddEducation={setAddEducation}
-                editEducation={editEducation}
-                setEditEducation={setEditEducation}
                 showExperience={showExperience}
                 setShowExperience={setShowExperience}
                 addExperience={addExperience}
                 setAddExperience={setAddExperience}
                 editExperience={editExperience}
                 setEditExperience={setEditExperience}
+                companyTillDateActive={companyTillDateActive}
+                setCompanyTillDateActive={setCompanyTillDateActive}
+                selectedExperienceId={selectedExperienceId}
+                setSelectedExperienceId={setSelectedExperienceId}
+                showEducations={showEducations}
+                setShowEducations={setShowEducations}
+                addEducation={addEducation}
+                setAddEducation={setAddEducation}
+                editEducation={editEducation}
+                setEditEducation={setEditEducation}
+                schoolTillDateActive={schoolTillDateActive}
+                setSchoolTillDateActive={setSchoolTillDateActive}
+                selectedEducationId={selectedEducationId}
+                setSelectedEducationId={setSelectedEducationId}
               />
-              <ResumeContainer value={value} />
+              <ResumeContainer value={value} setValue={setValue} />
             </>
           ) : (
             <>
@@ -133,18 +154,26 @@ export default function App() {
                 setShowPersonalDetails={setShowPersonalDetails}
                 editPersonalDetails={editPersonalDetails}
                 setEditPersonalDetails={setEditPersonalDetails}
-                showEducations={showEducations}
-                setShowEducations={setShowEducations}
-                addEducation={addEducation}
-                setAddEducation={setAddEducation}
-                editEducation={editEducation}
-                setEditEducation={setEditEducation}
                 showExperience={showExperience}
                 setShowExperience={setShowExperience}
                 addExperience={addExperience}
                 setAddExperience={setAddExperience}
                 editExperience={editExperience}
                 setEditExperience={setEditExperience}
+                companyTillDateActive={companyTillDateActive}
+                setCompanyTillDateActive={setCompanyTillDateActive}
+                selectedExperienceId={selectedExperienceId}
+                setSelectedExperienceId={setSelectedExperienceId}
+                showEducations={showEducations}
+                setShowEducations={setShowEducations}
+                addEducation={addEducation}
+                setAddEducation={setAddEducation}
+                editEducation={editEducation}
+                setEditEducation={setEditEducation}
+                schoolTillDateActive={schoolTillDateActive}
+                setSchoolTillDateActive={setSchoolTillDateActive}
+                selectedEducationId={selectedEducationId}
+                setSelectedEducationId={setSelectedEducationId}
               />
               <div className="button-container">
                 <Button name="Go Back" status={status} setStatus={setStatus} />
@@ -170,24 +199,32 @@ export default function App() {
                 setShowPersonalDetails={setShowPersonalDetails}
                 editPersonalDetails={editPersonalDetails}
                 setEditPersonalDetails={setEditPersonalDetails}
-                showEducations={showEducations}
-                setShowEducations={setShowEducations}
-                addEducation={addEducation}
-                setAddEducation={setAddEducation}
-                editEducation={editEducation}
-                setEditEducation={setEditEducation}
                 showExperience={showExperience}
                 setShowExperience={setShowExperience}
                 addExperience={addExperience}
                 setAddExperience={setAddExperience}
                 editExperience={editExperience}
                 setEditExperience={setEditExperience}
+                companyTillDateActive={companyTillDateActive}
+                setCompanyTillDateActive={setCompanyTillDateActive}
+                selectedExperienceId={selectedExperienceId}
+                setSelectedExperienceId={setSelectedExperienceId}
+                showEducations={showEducations}
+                setShowEducations={setShowEducations}
+                addEducation={addEducation}
+                setAddEducation={setAddEducation}
+                editEducation={editEducation}
+                setEditEducation={setEditEducation}
+                schoolTillDateActive={schoolTillDateActive}
+                setSchoolTillDateActive={setSchoolTillDateActive}
+                selectedEducationId={selectedEducationId}
+                setSelectedEducationId={setSelectedEducationId}
               />
-              <ResumeContainer value={value} />
+              <ResumeContainer value={value} setValue={setValue} />
             </>
           ) : (
             <>
-              <ResumeContainer value={value} />
+              <ResumeContainer value={value} setValue={setValue} />
               <div className="button-container">
                 <Button name="Go Back" status={status} setStatus={setStatus} />
                 <Button name="Download" />
