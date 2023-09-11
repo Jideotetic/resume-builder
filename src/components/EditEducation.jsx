@@ -6,6 +6,8 @@ export default function EditEducation({
   editEducation,
   setEditEducation,
   selectedEducationId,
+  schoolTillDateActive,
+  setSchoolTillDateActive,
 }) {
   function handleSchoolChange(e) {
     setValue({
@@ -35,6 +37,10 @@ export default function EditEducation({
     });
   }
 
+  function handleSchoolTillDateActiveChange(e) {
+    setSchoolTillDateActive(e.target.checked);
+  }
+
   function handleLocationChange(e) {
     setValue({
       ...value,
@@ -46,6 +52,7 @@ export default function EditEducation({
     !value.school ||
     !value.degree ||
     !value.schoolStartDate ||
+    (!schoolTillDateActive && !value.schoolEndDate) ||
     !value.schoolLocation;
 
   return (
@@ -72,32 +79,42 @@ export default function EditEducation({
         onChange={handleDegreeChange}
       />
       <br />
-      <label htmlFor="start-date">Start Date</label>
+      <label htmlFor="school-start-date">Start Date</label>
       <br />
       <input
         type="month"
-        name="start-date"
-        id="start-date"
+        name="school-start-date"
+        id="school-start-date"
         value={value.schoolStartDate}
         onChange={handleStartDateChange}
       />
       <br />
-      <label htmlFor="end-date">End Date</label>
+      <label htmlFor="school-end-date">End Date</label>
       <br />
       <input
         type="month"
-        name="end-date"
-        id="end-date"
+        name="school-end-date"
+        id="school-end-date"
         value={value.schoolEndDate}
         onChange={handleEndDateChange}
+        disabled={schoolTillDateActive}
       />
       <br />
-      <label htmlFor="location">Location</label>
+      <input
+        type="checkbox"
+        name="school-till-date"
+        id="school-till-date"
+        checked={schoolTillDateActive}
+        onChange={handleSchoolTillDateActiveChange}
+      />
+      <label htmlFor="school-till-date">Still school here</label>
+      <br />
+      <label htmlFor="school-location">Location</label>
       <br />
       <input
         type="text"
-        name="location"
-        id="location"
+        name="school-location"
+        id="school-location"
         placeholder="Enter Your School Location"
         value={value.schoolLocation}
         onChange={handleLocationChange}
@@ -113,6 +130,8 @@ export default function EditEducation({
           editEducation={editEducation}
           setEditEducation={setEditEducation}
           selectedEducationId={selectedEducationId}
+          schoolTillDateActive={schoolTillDateActive}
+          setSchoolTillDateActive={setSchoolTillDateActive}
         />
         <Button
           name="Cancel"
@@ -120,12 +139,16 @@ export default function EditEducation({
           setValue={setValue}
           editEducation={editEducation}
           setEditEducation={setEditEducation}
+          schoolTillDateActive={schoolTillDateActive}
+          setSchoolTillDateActive={setSchoolTillDateActive}
         />
         <Button
           name="Clear"
           value={value}
           setValue={setValue}
           editEducation={editEducation}
+          schoolTillDateActive={schoolTillDateActive}
+          setSchoolTillDateActive={setSchoolTillDateActive}
         />
       </div>
     </fieldset>

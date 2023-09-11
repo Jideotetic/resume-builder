@@ -1,4 +1,4 @@
-import { getMonthName, getMonthNumber } from '../customHooks';
+import { getMonthName, getMonthNumber, splitName } from '../customHooks';
 import '../styles/Button.css';
 
 export default function Button({
@@ -246,143 +246,168 @@ export default function Button({
         ...value,
         experience: value.experience.filter((e) => e.id !== id),
       });
-    }
-    // else if (!addEducation && name === 'Add Education') {
-    //   setAddEducation(!addEducation);
-    // } else if (addEducation && name === 'Save') {
-    //   setValue({
-    //     ...value,
-    //     educations: [
-    //       ...value.educations,
-    //       {
-    //         id: value.educations.length,
-    //         school: value.school,
-    //         degree: value.degree,
-    //         schoolStartDate: `${
-    //           value.schoolStartDate.split('-')[0]
-    //         }-${getMonthName(value.schoolStartDate.split('-')[1])}`,
-    //         schoolEndDate: `${
-    //           schoolTillDateActive
-    //             ? 'Till Date'
-    //             : `${value.schoolEndDate.split('-')[0]}-${getMonthName(
-    //                 value.schoolEndDate.split('-')[1]
-    //               )}`
-    //         }`,
-    //         schoolTillDate: schoolTillDateActive,
-    //         schoolLocation: value.schoolLocation,
-    //       },
-    //     ],
-    //     school: '',
-    //     degree: '',
-    //     schoolStartDate: '',
-    //     schoolEndDate: '',
-    //     schoolTillDate: schoolTillDateActive,
-    //     schoolLocation: '',
-    //   });
-    //   setAddEducation(!addEducation);
-    // } else if (addEducation && name === 'Cancel') {
-    //   setValue({
-    //     ...value,
-    //     school: '',
-    //     degree: '',
-    //     schoolStartDate: '',
-    //     schoolEndDate: '',
-    //     schoolLocation: '',
-    //   });
-    //   if (schoolTillDateActive) {
-    //     setSchoolTillDateActive(!schoolTillDateActive);
-    //   }
-    //   setAddEducation(!addEducation);
-    // } else if (addEducation && name === 'Clear') {
-    //   setValue({
-    //     ...value,
-    //     school: '',
-    //     degree: '',
-    //     schoolStartDate: '',
-    //     schoolEndDate: '',
-    //     schoolLocation: '',
-    //   });
-    //   setSchoolTillDateActive(!schoolTillDateActive);
-    // } else if (showEducations && !editEducation && name === 'Edit') {
-    //   setSelectedEducationId(id);
-    //   setValue({
-    //     ...value,
-    //     school: value.educations[selectedEducationId].school,
-    //     degree: value.educations[selectedEducationId].degree,
-    //     schoolStartDate: `${
-    //       value.educations[selectedEducationId].schoolStartDate.split('-')[0]
-    //     }-${getMonthNumber(
-    //       value.educations[selectedEducationId].schoolStartDate.split('-')[1]
-    //     )
-    //       .toString()
-    //       .padStart(2, '0')}`,
-    //     schoolEndDate: `${
-    //       value.educations[selectedEducationId].schoolEndDate.split('-')[0]
-    //     }-${getMonthNumber(
-    //       value.educations[selectedEducationId].schoolEndDate.split('-')[1]
-    //     )
-    //       .toString()
-    //       .padStart(2, '0')}`,
-    //     schoolLocation: value.educations[selectedEducationId].schoolLocation,
-    //   });
-    //   setEditEducation(!editEducation);
-    // } else if (editEducation && name === 'Save') {
-    //   setValue({
-    //     ...value,
-    //     educations: [
-    //       {
-    //         ...value.educations[selectedEducationId],
-    //         id: selectedEducationId,
-    //         school: value.school,
-    //         degree: value.degree,
-    //         schoolStartDate: `${
-    //           value.schoolStartDate.split('-')[0]
-    //         }-${getMonthName(value.schoolStartDate.split('-')[1])}`,
-    //         schoolEndDate: `${value.schoolEndDate.split('-')[0]}-${getMonthName(
-    //           value.schoolEndDate.split('-')[1]
-    //         )}`,
-    //         schoolLocation: value.schoolLocation,
-    //       },
-    //     ],
-    //     school: '',
-    //     degree: '',
-    //     schoolStartDate: '',
-    //     schoolEndDate: '',
-    //     schoolLocation: '',
-    //   });
-    //   setEditEducation(!editEducation);
-    // } else if (editEducation && name === 'Cancel') {
-    //   setValue({
-    //     ...value,
-    //     school: '',
-    //     degree: '',
-    //     schoolStartDate: '',
-    //     schoolEndDate: '',
-    //     schoolLocation: '',
-    //   });
-    //   setEditEducation(!editEducation);
-    // } else if (editEducation && name === 'Clear') {
-    //   setValue({
-    //     ...value,
-    //     school: '',
-    //     degree: '',
-    //     schoolStartDate: '',
-    //     schoolEndDate: '',
-    //     schoolLocation: '',
-    //   });
-    // } else if (!editEducation && showEducations && name === 'Delete') {
-    //   setSelectedEducationId(id);
-    //   setValue({
-    //     ...value,
-    //     educations: value.educations.filter((e) => {
-    //       e.id !== education.selectedEducationId;
-    //     }),
-    //   });
-    // }
-  }
+    } else if (!addEducation && name === 'Add Education') {
+      setAddEducation(!addEducation);
+    } else if (addEducation && name === 'Save') {
+      setValue({
+        ...value,
+        educations: [
+          ...value.educations,
+          {
+            id: value.educations.length,
+            school: value.school,
+            degree: value.degree,
+            schoolStartDate: `${
+              value.schoolStartDate.split('-')[0]
+            }-${getMonthName(value.schoolStartDate.split('-')[1])}`,
+            schoolEndDate: `${
+              schoolTillDateActive
+                ? 'Till Date'
+                : `${value.schoolEndDate.split('-')[0]}-${getMonthName(
+                    value.schoolEndDate.split('-')[1]
+                  )}`
+            }`,
+            schoolTillDate: schoolTillDateActive,
+            schoolLocation: value.schoolLocation,
+          },
+        ],
+        school: '',
+        degree: '',
+        schoolStartDate: '',
+        schoolEndDate: '',
+        schoolTillDate: schoolTillDateActive
+          ? setSchoolTillDateActive(!schoolTillDateActive)
+          : null,
+        schoolLocation: '',
+      });
+      setAddEducation(!addEducation);
+    } else if (addEducation && name === 'Cancel') {
+      setValue({
+        ...value,
+        school: '',
+        degree: '',
+        schoolStartDate: '',
+        schoolEndDate: '',
+        schoolTillDate: schoolTillDateActive,
+        schoolLocation: '',
+      });
+      if (schoolTillDateActive) {
+        setSchoolTillDateActive(!schoolTillDateActive);
+      }
+      setAddEducation(!addEducation);
+    } else if (addEducation && name === 'Clear') {
+      setValue({
+        ...value,
+        school: '',
+        degree: '',
+        schoolStartDate: '',
+        schoolEndDate: '',
+        schoolTillDate: schoolTillDateActive,
+        schoolLocation: '',
+      });
+      if (!schoolTillDateActive) {
+        return;
+      } else {
+        setSchoolTillDateActive(!schoolTillDateActive);
+      }
+    } else if (showEducations && !editEducation && name === 'Edit') {
+      setSelectedEducationId(id);
+      setValue({
+        ...value,
+        school: value.educations[id].school,
+        degree: value.educations[id].degree,
+        schoolStartDate: `${
+          value.educations[id].schoolStartDate.split('-')[0]
+        }-${getMonthNumber(value.educations[id].schoolStartDate.split('-')[1])
+          .toString()
+          .padStart(2, '0')}`,
+        schoolEndDate: `${
+          value.educations[id].schoolTillDate
+            ? ''
+            : `${
+                value.educations[id].schoolEndDate.split('-')[0]
+              }-${getMonthNumber(
+                value.educations[id].schoolEndDate.split('-')[1]
+              )
+                .toString()
+                .padStart(2, '0')}`
+        }`,
 
-  function splitName(name) {
-    return name.split(' ').join('-').toLowerCase();
+        schoolTillDate: value.educations[id].schoolTillDate,
+        schoolLocation: value.educations[id].schoolLocation,
+      });
+      if (value.educations[id].schoolTillDate) {
+        setSchoolTillDateActive(!schoolTillDateActive);
+      }
+      setEditEducation(!editEducation);
+    } else if (editEducation && name === 'Save') {
+      setValue({
+        ...value,
+        educations: [
+          {
+            ...value.educations[selectedEducationId],
+            id: selectedEducationId,
+            school: value.school,
+            degree: value.degree,
+            schoolStartDate: `${
+              value.schoolStartDate.split('-')[0]
+            }-${getMonthName(value.schoolStartDate.split('-')[1])}`,
+            schoolEndDate: `${
+              schoolTillDateActive
+                ? 'Till Date'
+                : `${value.schoolEndDate.split('-')[0]}-${getMonthName(
+                    value.schoolEndDate.split('-')[1]
+                  )}`
+            }`,
+            schoolTillDate: schoolTillDateActive,
+            schoolLocation: value.schoolLocation,
+          },
+        ],
+        school: '',
+        degree: '',
+        schoolStartDate: '',
+        schoolEndDate: '',
+        schoolTillDate: schoolTillDateActive
+          ? setSchoolTillDateActive(!schoolTillDateActive)
+          : null,
+        schoolLocation: '',
+      });
+      setEditEducation(!editEducation);
+    } else if (editEducation && name === 'Cancel') {
+      setValue({
+        ...value,
+        school: '',
+        degree: '',
+        schoolStartDate: '',
+        schoolEndDate: '',
+        schoolTillDate: schoolTillDateActive,
+        schoolLocation: '',
+      });
+      if (schoolTillDateActive) {
+        setSchoolTillDateActive(!schoolTillDateActive);
+      }
+      setEditEducation(!editEducation);
+    } else if (editEducation && name === 'Clear') {
+      setValue({
+        ...value,
+        school: '',
+        degree: '',
+        schoolStartDate: '',
+        schoolEndDate: '',
+        schoolTillDate: schoolTillDateActive,
+        schoolLocation: '',
+      });
+      if (!schoolTillDateActive) {
+        return;
+      } else {
+        setSchoolTillDateActive(!schoolTillDateActive);
+      }
+    } else if (!editEducation && showEducations && name === 'Delete') {
+      setValue({
+        ...value,
+        educations: value.educations.filter((e) => e.id !== id),
+      });
+    }
   }
 
   return (

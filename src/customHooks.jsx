@@ -8,3 +8,7 @@ export function getMonthName(monthNumber) {
 export function getMonthNumber(monthName) {
   return new Date(`${monthName} 1, 2023`).getMonth() + 1;
 }
+
+export function splitName(name) {
+  return name.split(' ').join('-').toLowerCase();
+}

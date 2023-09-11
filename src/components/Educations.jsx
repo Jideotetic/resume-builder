@@ -11,6 +11,8 @@ export default function Educations({
   id,
   value,
   setValue,
+  schoolTillDateActive,
+  setSchoolTillDateActive,
 }) {
   return (
     <ul className="educations-list">
@@ -26,7 +28,8 @@ export default function Educations({
             setEditEducation={setEditEducation}
             showEducations={showEducations}
             setSelectedEducationId={setSelectedEducationId}
-            selectedEducationId={selectedEducationId}
+            schoolTillDateActive={schoolTillDateActive}
+            setSchoolTillDateActive={setSchoolTillDateActive}
           />
           <Button
             name="Delete"
@@ -39,6 +42,8 @@ export default function Educations({
             showEducations={showEducations}
             setSelectedEducationId={setSelectedEducationId}
             selectedEducationId={selectedEducationId}
+            schoolTillDateActive={schoolTillDateActive}
+            setSchoolTillDateActive={setSchoolTillDateActive}
           />
         </div>
       </div>

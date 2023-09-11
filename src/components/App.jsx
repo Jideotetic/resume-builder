@@ -37,11 +37,7 @@ export default function App() {
     phoneNumber: '09014349835',
     homeAddress: 'Lagos, Nigeria',
     careerSummary: `I’m a highly motivated Front-end developer highly invested in building responsive user interfaces and accessible websites. With strong background in semantic HTML, CSS, and JavaScript, I get my motivations from being able to develop websites with big part of accessibility in mind, when I use accessibility tools on websites I built and it works correctly, I feel fulfilled and motivated to do more. I have 1 year of experience in training and have built a lot of projects HTML5, CSS3, JavaScript, Git & GitHub with incredible ease of adaptation and learning new technologies as need be.`,
-    school: '',
-    degree: '',
-    schoolStartDate: '',
-    schoolEndDate: '',
-    schoolLocation: '',
+
     company: '',
     position: '',
     companyStartDate: '',
@@ -49,6 +45,14 @@ export default function App() {
     companyTillDate: companyTillDateActive,
     companyLocation: '',
     jobDescription: '',
+
+    school: '',
+    degree: '',
+    schoolStartDate: '',
+    schoolEndDate: '',
+    schoolTillDate: schoolTillDateActive,
+    schoolLocation: '',
+
     personalDetails: {
       name: 'Abdulbasit Yusuf',
       email: 'jideotetic@gmail.com',
@@ -56,6 +60,20 @@ export default function App() {
       homeAddress: 'Lagos, Nigeria',
       careerSummary: `I’m a highly motivated Front-end developer highly invested in building responsive user interfaces and accessible websites. With strong background in semantic HTML, CSS, and JavaScript, I get my motivations from being able to develop websites with big part of accessibility in mind, when I use accessibility tools on websites I built and it works correctly, I feel fulfilled and motivated to do more. I have 1 year of experience in training and have built a lot of projects HTML5, CSS3, JavaScript, Git & GitHub with incredible ease of adaptation and learning new technologies as need be.`,
     },
+
+    experience: [
+      {
+        id: 0,
+        company: 'Accion Microfinance Bank',
+        position: 'Customer Experience Officer',
+        companyStartDate: `2022-${getMonthName(7)}`,
+        companyEndDate: `${!companyTillDateActive ? 'Till Date' : ''}`,
+        companyTillDate: !companyTillDateActive,
+        companyLocation: 'Lagos, Nigeria',
+        jobDescription: 'Handle customer enquiry, request and complaints',
+      },
+    ],
+
     educations: [
       {
         id: 0,
@@ -67,18 +85,6 @@ export default function App() {
         }`,
         schoolTillDate: schoolTillDateActive,
         schoolLocation: 'Sokoto, Nigeria',
-      },
-    ],
-    experience: [
-      {
-        id: 0,
-        company: 'Accion Microfinance Bank',
-        position: 'Customer Experience Officer',
-        companyStartDate: `2022-${getMonthName(7)}`,
-        companyEndDate: `${!companyTillDateActive ? 'Till Date' : ''}`,
-        companyTillDate: !companyTillDateActive,
-        companyLocation: 'Lagos, Nigeria',
-        jobDescription: 'Handle customer enquiry, request and complaints',
       },
     ],
   });

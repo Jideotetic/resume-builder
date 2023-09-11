@@ -36,6 +36,10 @@ export default function EducationForm({
     });
   }
 
+  function handleSchoolTillDateActiveChange(e) {
+    setSchoolTillDateActive(e.target.checked);
+  }
+
   function handleSchoolLocationChange(e) {
     setValue({
       ...value,
@@ -43,14 +47,11 @@ export default function EducationForm({
     });
   }
 
-  function handleSchoolTillDateActiveChange(e) {
-    setSchoolTillDateActive(e.target.checked);
-  }
-
   const isActive =
     !value.school ||
     !value.degree ||
     !value.schoolStartDate ||
+    (!schoolTillDateActive && !value.schoolEndDate) ||
     !value.schoolLocation;
 
   return (
@@ -128,6 +129,7 @@ export default function EducationForm({
           addEducation={addEducation}
           setAddEducation={setAddEducation}
           schoolTillDateActive={schoolTillDateActive}
+          setSchoolTillDateActive={setSchoolTillDateActive}
         />
         <Button
           name="Cancel"

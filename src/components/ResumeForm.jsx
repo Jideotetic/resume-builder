@@ -213,8 +213,8 @@ export default function ResumeForm({
               editEducation={editEducation}
               setEditEducation={setEditEducation}
               selectedEducationId={selectedEducationId}
-              // schoolTillDateActive={schoolTillDateActive}
-              // setSchoolTillDateActive={setSchoolTillDateActive}
+              schoolTillDateActive={schoolTillDateActive}
+              setSchoolTillDateActive={setSchoolTillDateActive}
             />
           ) : (
             <>
@@ -231,6 +231,8 @@ export default function ResumeForm({
                     showEducations={showEducations}
                     value={value}
                     setValue={setValue}
+                    schoolTillDateActive={schoolTillDateActive}
+                    setSchoolTillDateActive={setSchoolTillDateActive}
                   />
                 );
               })}
